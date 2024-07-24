@@ -80,5 +80,3 @@ def Delta_Homeostatic_Scaling(state_value: int, r_target = Target_Rate, delta_t 
     return alpha
 
 
-k = 3
-n = 4
