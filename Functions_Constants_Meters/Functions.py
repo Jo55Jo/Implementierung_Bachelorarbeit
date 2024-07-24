@@ -38,7 +38,7 @@ def Spike_Propagation(Connection_arr: np.ndarray, state_value: list, state_value
 
         # for every connection with a neuron that was active in t_-1
         for connection in Connection_arr[i]:
-            if connection in state_value_old:
+            if connection in state_value_old:kkölk
                 Spike_i += 1
     
         # Calculate the probability for Neuron i to be Active with homeostatic scaling factor of i and number of activated connections
