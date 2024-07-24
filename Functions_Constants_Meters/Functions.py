@@ -78,3 +78,7 @@ def Update_Homeostatic_Scaling(state_value: list, Alpha: np.ndarray):
 def Delta_Homeostatic_Scaling(state_value: int, r_target = Target_Rate, delta_t = Timeconstant, tau_hp = Timeconstant_hp):
     alpha = (delta_t*r_target-state_value)*(delta_t/tau_hp)
     return alpha
+
+
+k = 3
+n = 4
