@@ -1,41 +1,16 @@
 import matplotlib.pyplot as plt 
 import numpy as np
-
-import matplotlib.pyplot as plt
-
-def create_activityplot(activity_list: list, title: str, color_plot: str):
-    plt.figure(figsize=(6, 6))
-
-    # X-Achse: Zeit in diskreten Zeitschritten (Sekunden / delta_t)
-    x = range(len(activity_list))
-
-    # Y-Achse: Aktivitätswerte
-    y = activity_list
-
-    # Erstellen des Balkendiagramms
-    plt.bar(x, y, color=color_plot)
-
-    for spine in plt.gca().spines.values():
-        spine.set_visible(False)
-
-    # Nur die linke und untere Achse sichtbar machen
-    plt.gca().spines['left'].set_visible(True)
-    plt.gca().spines['bottom'].set_visible(True)
-
-    # X-Achse festlegen
-    plt.xlabel('Time (seconds / )', fontsize=16)
-
-    # Y-Achse festlegen und Maximum auf 20 setzen
-    plt.ylabel('Activity', fontsize=16)
-    plt.ylim(0, 40)  # Setze das Maximum der Y-Achse auf 20
-
-    # Titel hinzufügen
-    plt.title(title, color=color_plot, fontsize=20)
-
-    # Diagramm anzeigen
-    plt.show()
+from Functions_Constants_Meters import Constants as cons
+import os
 
 
+# Subplot-Konfigurationseinstellungen
+plt.rcParams['figure.subplot.left'] = 0.185
+plt.rcParams['figure.subplot.right'] = 0.785
+plt.rcParams['figure.subplot.bottom'] = 0.185
+plt.rcParams['figure.subplot.top'] = 0.785
+plt.rcParams['figure.subplot.wspace'] = 0.2
+plt.rcParams['figure.subplot.hspace'] = 0.2
 
 
 def plot_log_histogram(data, title):
@@ -82,8 +57,28 @@ def plot_log_histogram(data, title):
     plt.gca().spines['bottom'].set_visible(True)
 
     # Labels and title
-    plt.xlabel('Avalanche Size')
-    plt.ylabel('Probability')
-    plt.title(title)
+    plt.xlabel('Avalanche Size', fontsize=16)
+    plt.ylabel('Probability', fontsize=16)
+    plt.title(title, fontsize=20)
     plt.legend()
+
+        # Saving the Plot in a plots directory
+    output_dir = "plots"
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    # Basis-Dateiname ohne Erweiterung
+    base_filename = "Avalanches"
+    file_extension = ".png"
+
+    # Finde einen nicht vorhandenen Dateinamen durch Anhängen einer Zahl
+    counter = 1
+    output_file = os.path.join(output_dir, base_filename + file_extension)
+    while os.path.exists(output_file):
+        output_file = os.path.join(output_dir, f"{base_filename}_{counter}{file_extension}")
+        counter += 1
+
+    # Speichere das Plot im angegebenen Verzeichnis
+    plt.savefig(output_file)
+
     plt.show()

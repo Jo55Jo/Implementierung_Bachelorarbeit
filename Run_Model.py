@@ -42,7 +42,8 @@ def Run_Model(model: str, N: int, Seconds: int, h: float):
     Avalanche_Tracker = 0
     Avalanche_Distribution = []
 
-    
+    #Activity Tracker for measuring average activity
+    Activity_Tracker = 0
 
     for i in range(Iterations):        
 
@@ -74,21 +75,31 @@ def Run_Model(model: str, N: int, Seconds: int, h: float):
         Alpha = funs.Update_Homeostatic_Scaling(state_value_new, Alpha)
 
         # meter global and global average activity 
-        glob_t = meters.Global_Activity(state_value_new)
-        average_act = meters.Average_Activity(N, glob_t, i)
-        average_alpha = np.average(Alpha)
+        glob_t = len(state_value_new)
+        Activity_Tracker += len(state_value_new)
+        
+        # we calculate the average global activity for time steps of 4 Milliseconds
+        if i % 4 == 0:
+            #! correct? I want to update the average acitivity array
+            Average_Activity_t = Activity_Tracker / (N * cons.delta_t * 4)
+            average_alpha = np.average(Alpha)
+
+            # Reset the activity tracker to 0
+            Activity_Tracker = 0
+
+            # append every 4 Seconds to the lists
+            Average_Alpha.append(average_alpha)
+            Average_Activity.append(Average_Activity_t)
+
+            #Print average results
+            print("Iteration: ", i)
+            print("Average Tracker: ", Average_Activity_t)
+            #print("Average Alpha: ", average_alpha)
+            
+
 
         # Collect activity in lists for later plotting
-        Average_Activity.append(average_act)
         Global_act.append(glob_t)
-        Average_Alpha.append(average_alpha)
-
-
-        # do metering
-        if i % 4 == 0:
-            print("Iteration: ", i)
-            print("Global Activity:", glob_t)
-            print("Average Alpha: ", average_alpha)
 
         if i % 100 == 0:
 
