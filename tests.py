@@ -5,7 +5,7 @@ from Meters_Plots import Plots as plot
 from Functions_Constants_Meters import Constants as cons
 
 print("h: ", cons.h)
-global_act, Branching_global, Autocorrelation, Average_Activity, Alpha, Average_Alpha, Avalanche_Distribution = Run_Model.Run_Model("AA", cons.N, Seconds=100, h=cons.h)
+global_act, Branching_global, Autocorrelation, Average_Activity, Alpha, Average_Alpha, Avalanche_Distribution = Run_Model.Run_Model("AA", cons.N, Seconds=10, h=cons.h)
 
 
 print("")

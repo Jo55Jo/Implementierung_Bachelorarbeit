@@ -2,7 +2,7 @@
 N = 1000
 
 # Extern Input (h) Element of [0, 0.1, 0.01, 0.001, 0.0001]
-h = 1
+h = 0.1
 
 # Target-rate (r*) = 1 second
 r_target = 1
@@ -11,7 +11,7 @@ r_target = 1
 delta_t = 0.001
 
 # Homeostatic-scaling-constant (tau_hp) = 1 hour = 10**3 is in paper
-tau_hp = 10**3
+tau_hp = 10
 
 
 
