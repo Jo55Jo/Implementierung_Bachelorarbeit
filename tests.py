@@ -3,38 +3,31 @@ import numpy as np
 import math
 from Meters_Plots import Plots as plot
 from Functions_Constants_Meters import Constants as cons
-from Models import Erdos_Network as ER
-from Models import Spacial_Clustered as SC
-import time
-import sqlite3
+
+print("h: ", cons.h)
+global_act, Branching_global, Autocorrelation, Average_Activity, Alpha, Average_Alpha, Avalanche_Distribution = Run_Model.Run_Model("AA", cons.N, Seconds=100, h=cons.h)
 
 
-'''
-N = 10000
-# Tests
-start_time = time.time()
-
-ConList = SC.Spacial_Clustered(N)
-
-end_time = time.time()
-total_time = end_time - start_time
-print("Gesamtzeit:", total_time)
-
-[print(ConList[i]) for i in range(100)]
-
-conn = sqlite3.connect('Compiled_Models/SS_compiled.db')
-cursor = conn.cursor()
-'''
-global_act, Branching_ind, Branching_global, Autocorrelation, Average_Activity, Alpha = Run_Model.Run_Model("SC_10000_0", 10000, 30, 0.001)
-
-Average_Activity_herz = [activity * cons.delta_t for activity in Average_Activity]
-
-plot.create_barplot(Average_Activity_herz)
+print("")
+print("Number of Neurons: 10000")
+print("Running Time: 10 Seconds")
+print("Time Step Size: ", cons.delta_t)
+print("Input rate h:", cons.h)
+print("Target Spiking Rate: ", cons.r_target)
+print("Homeostatic Constant: ", cons.tau_hp)
+print("last branching parameter: ", Branching_global[-1])
+print("last autocorrelation time: ", Autocorrelation[-1])
 print("Average_Alpha:", np.average(Alpha))
+print("Used Modell: AA")
+plot.create_activityplot(global_act, "External Input h = " + str(cons.h), "green")
+plot.create_activityplot(Branching_global, "Branching Parameter every 100 Milliseconds", "green")
+plot.create_activityplot(Average_Alpha, "Mean homeostatic value", "green")
+plot.create_activityplot(Autocorrelation, "Autocorrelation", "green")
+plot.plot_log_histogram(Avalanche_Distribution, "Avalanche Distribution - h=1")
 
-#! neuestes Problem ist, einen Abruf von der SQL Datenbank zu machen. 
+#! Was will ich als nächstes machen? 
 
-#! Was die dynamik angeht hängt ganz ganz viel davon ab wie Alpha initialisiert wird und wie groß die Zeitkonstante gewählt wird.
-#! Wie soll ich Alpha initialisieren? Oder einfach mal lange laufen lassen udn schauen worauf es sich einpendelt?
+#! Ich möchte gerne gute Plots kreieren. Plots die optisch was hergeben. 
 
-#! Der Branching parameter ist natürlich noch müll
+#! Dann über nach 1000 Iterationen laufen lassen mit enorm niedrigem homöostatischer Konstate 
+#! Dann noch eine ganze Menge

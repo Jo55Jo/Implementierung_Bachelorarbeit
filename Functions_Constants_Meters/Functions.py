@@ -30,7 +30,6 @@ def External_Input(N: int, state_value: list, h: float, delta_t=Timeconstant):
 # Takes the Neuron matrix, the homeostatic-scaling-array, the old state-value-array, the actual state-value-array calculates the update of the state-value array
 #! Because it is very unlikely that an neuron was activated by external input, we first calculate whether it is updated by previous activation and then check whether it is already active
 def Spike_Propagation(Connection_arr: np.ndarray, state_value: list, state_value_old: list, Alpha: np.ndarray):
-    
     #Für jedes Neuron
     for i in range(len(Connection_arr)):
 
@@ -43,10 +42,12 @@ def Spike_Propagation(Connection_arr: np.ndarray, state_value: list, state_value
     
         # Calculate the probability for Neuron i to be Active with homeostatic scaling factor of i and number of activated connections
         #! es gibt ein Problem, wenn Alpha > 1 dann funktioniert es nicht mehr und Alpha > 1 ist theoretisch möglich
+
         if np.random.binomial(Spike_i, Alpha[i]) == 1:
             #check whether the neuron is already activ
             if i not in state_value:
                 state_value.append(i)
+
 
     return state_value
 
@@ -66,6 +67,9 @@ def Update_Homeostatic_Scaling(state_value: list, Alpha: np.ndarray):
         if Alpha_updated > 1:
             Alpha_updated = 1
 
+        if Alpha_updated < 0:
+            Alpha_updated = 0
+
         #update Apha[i]
         Alpha[i] = Alpha_updated
 
@@ -79,4 +83,5 @@ def Delta_Homeostatic_Scaling(state_value: int, r_target = Target_Rate, delta_t 
     alpha = (delta_t*r_target-state_value)*(delta_t/tau_hp)
     return alpha
 
-
+#! delta_alpha better name 
+#! timestep better as delta_t

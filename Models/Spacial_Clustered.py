@@ -1,12 +1,12 @@
 import numpy as np
 import math
+import time
     
 # int (N), int (dentritic radii = 20müm in paper == 20) -> NxN matrix (connections)
 # X_sorted list of somata, the list of axons, the dentritic radii and the number of neurons are given into the Function that draws the connections into the connection matrix. 
 
 def Spacial_Clustered(N: int, dentritic_radius = 20):
     # initialize the connection array with empty lists
-    Connection_arr = np.empty(N, dtype=object)
     Connection_arr = [list() for _ in range(N)]
 
     # Create list of Somatas (list of touples)
@@ -47,7 +47,9 @@ def Spacial_Clustered(N: int, dentritic_radius = 20):
                 if Soma[0] > lower_bound:
                     if (is_intersecting(Segment_0, Segment_1, Soma, dentritic_radius) == True) and not(k == i):
                         Connection_arr[i].append(k)
-
+    
+    #Converting from array of lists to array of arrays 
+    Connection_arr = [np.array(sublist) for sublist in Connection_arr]
     return Connection_arr
 
 
@@ -56,7 +58,7 @@ def Spacial_Clustered(N: int, dentritic_radius = 20):
 # takes number of neurons,  field_size and soma-radus and returns 2 lists... 
 # ...of touples (points), ordered in x direction
 #! Neurons are spawned on Integer Grid.
-#! I start the Somas at 20 and stop at 4980 so that they don't show over the 
+#! I start the Somas at 20 and stop at 4980 so that they don't go over the boundary
 def Draw_Somata(N: int, Somata = [], field_s = 5000, Soma_r = 7.5, dentritic_r = 20):
     #redo it recursively for every time it failed because radii overlaped
     fails = 0
@@ -110,7 +112,7 @@ def Draw_Axons(N:int , Somata: list, axon_length_average = 100, sigma_length = 1
     Axons = np.empty(N, dtype=object)
     Axons[:] = [list() for _ in range(N)]
 
-    # initialize array of axon lenghts drawn from raylight distribuition #! made by chatGPT (just using np.random.rayleight doesnt work)
+    # initialize array of axon lenghts drawn from rayligh distribuition #! made by chatGPT (just using np.random.rayleigh doesnt work)
     axon_lengths = np.random.rayleigh(sigma_length, N)
     # important to scale ba mean axon length
     axon_lengths_scaled = axon_lengths * axon_length_average / np.mean(axon_lengths) 
@@ -445,3 +447,13 @@ def run_tests_does_line_intersect_circle():
     assert does_line_intersect_circle(point1, point2, soma, radius) == True, "Testfall 4 fehlgeschlagen"
 
     print("Alle Testfälle erfolgreich ausgeführt.")
+'''
+start_time = time.time()
+
+Spacial_Clustered(10000)
+
+end_time = time.time()
+total_time = end_time - start_time
+
+print("Spacial Clustered Time: ", total_time)
+'''
