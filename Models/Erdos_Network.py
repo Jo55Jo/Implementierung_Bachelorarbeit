@@ -20,4 +20,4 @@ def Erdos_Network(N: int, p = 10**(-3)):
 
     return Connection_arr
 
-
+# yuhu
