@@ -24,7 +24,7 @@ plot.create_activityplot(Branching_global, "Branching Parameter every 100 Millis
 plot.create_activityplot(Average_Alpha, "Mean homeostatic value", "green")
 plot.create_activityplot(Autocorrelation, "Autocorrelation", "green")
 plot.plot_log_histogram(Avalanche_Distribution, "Avalanche Distribution - h=1")
-
+# cool
 #! Was will ich als nächstes machen? 
 
 #! Ich möchte gerne gute Plots kreieren. Plots die optisch was hergeben. 
