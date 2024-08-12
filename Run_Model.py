@@ -21,7 +21,7 @@ def Run_Model(model: str, N: int, Seconds: int, h: float):
     # initialize state_value_old, Alphaa (homostatic array)
     state_value_old = np.zeros(shape=10000)
     # initializing Alpha. As k = 4 in the models we use 0.25 for h≠1 (h=1 we use 0 so that it doesnt take so long until its giving resonable results)
-    Alpha           = np.random.normal(0.2, 0.01, N)
+    Alpha           = np.random.normal(0.2, 0.00, N)
     # Alpha           = np.zeros(N)
     # Calculate Iterations given by Seconds/delta_t, cast to int with math.ceil
     Iterations = math.ceil(Seconds/cons.delta_t)

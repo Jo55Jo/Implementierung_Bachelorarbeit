@@ -11,7 +11,7 @@ r_target = 1
 delta_t = 0.001
 
 # Homeostatic-scaling-constant (tau_hp) = 1 hour = 10**3 is in paper
-tau_hp = 10
+tau_hp = 0.1
 
 # Running Time
 Seconds = 1

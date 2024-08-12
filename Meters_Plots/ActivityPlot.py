@@ -58,7 +58,7 @@ def create_activityplot(activity_list: list, color_plot: str):
     plt.xticks(ticks=x_tick_positions, labels=x_tick_labels, fontsize=tick_fontsize_x)
 
     # Titel hinzufügen
-    plt.title(r'$\frac{h}{r^*} = 10^3$', color=color_plot, fontsize=title_fontsize, pad=40, fontweight='bold')
+    plt.title(r'$\frac{h}{r^*} = 10^0$', color=color_plot, fontsize=title_fontsize, pad=40, fontweight='bold')
 
 
     # Saving the Plot in a plots directory
