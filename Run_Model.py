@@ -35,7 +35,7 @@ def Run_Model(model: str, N: int, Seconds: int, h: float):
     Average_Alpha = []
 
     #Initializing
-    state_value_new = np.random.choice(N, size=40, replace=False).tolist()
+    state_value_new = np.random.choice(N, size=0, replace=False).tolist()
 
 
     #Avalanche distribution tracker initialized as 0 and updated once activity ≠ 0
