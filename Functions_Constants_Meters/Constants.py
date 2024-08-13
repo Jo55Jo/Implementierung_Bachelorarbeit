@@ -1,5 +1,5 @@
 # Number of Neurons (N)
-N = 10000
+N = 1000
 
 # Extern Input (h) Element of [0, 0.1, 0.01, 0.001, 0.0001]
 h = 0.001
@@ -17,6 +17,6 @@ delta_t_act = 0.004
 tau_hp = 10**3
 
 # Running Time
-Seconds = 30
+Seconds = 5
 
 
