@@ -102,7 +102,7 @@ def Run_Model(model: str, N: int, Seconds: int, h: float):
         # Collect activity in lists for later plotting
         Global_act.append(glob_t)
 
-        '''
+        
         if i % 100 == 0:
 
             branch_glob, branch_ind_t = meters.Branching_Parameters(N, Connection_arr, Alpha)
@@ -115,9 +115,10 @@ def Run_Model(model: str, N: int, Seconds: int, h: float):
 
 
             print("Iteration:", i)
-            print("Branching Parameter:", branch_glob)
-            print("Autocorrelation: ", autocorr_t)
-        '''
+            ("Average Tracker: ", glob_t)
+            #print("Branching Parameter:", branch_glob)
+            #print("Autocorrelation: ", autocorr_t)
+        
 
         # If there is zero activity but the tracker is not 0, then the avalanche is over so return to 0 and 
         if (glob_t == 0) and (Avalanche_Tracker != 0):
