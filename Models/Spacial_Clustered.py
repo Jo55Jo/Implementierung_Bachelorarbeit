@@ -161,7 +161,7 @@ def Draw_Axons(N:int , Somata: list, axon_length_average = 100, sigma_length = 1
 
             
 
-
+        print(Axons[-1])
     return Axons
 
 
@@ -450,10 +450,14 @@ def run_tests_does_line_intersect_circle():
 '''
 start_time = time.time()
 
-Spacial_Clustered(10000)
+SC = Spacial_Clustered(10000)
 
 end_time = time.time()
 total_time = end_time - start_time
 
+
 print("Spacial Clustered Time: ", total_time)
+
+total_length = sum(len(inner_array) for inner_array in SC)
+print(total_length/10000)
 '''

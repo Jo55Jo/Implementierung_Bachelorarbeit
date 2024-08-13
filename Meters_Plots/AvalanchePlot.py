@@ -37,7 +37,7 @@ def plot_log_histogram(data, title):
     probabilities = probabilities[non_zero]
     
     # Plot the histogram on a log-log scale
-    plt.figure(figsize=(6, 6))
+    plt.figure(figsize=(5, 3))
     plt.scatter(bin_centers, probabilities, color='blue', label='Data')
     
     # Set log-log scale

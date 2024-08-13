@@ -30,8 +30,8 @@ def create_activityplot(activity_list: list, color_plot: str):
     # Y-Achse: Aktivitätswerte
     y = activity_list
 
-    # Erstellen des Balkendiagramms
-    plt.bar(x, y, color=color_plot)
+    # Make the plot
+    plt.plot(x, y, color=color_plot, linewidth=1)
 
     for spine in plt.gca().spines.values():
         spine.set_visible(False)
@@ -53,7 +53,7 @@ def create_activityplot(activity_list: list, color_plot: str):
     plt.yticks([0, 20], fontsize=tick_fontsize_y)
 
     # Set custom x-ticks to display only integer labels
-    x_tick_positions = [i for i in range(len(x)+1) if i / normalize % 1 == 0]  # Plotte nur X-Werte, die ganze Zahlen sind
+    x_tick_positions = [i for i in range(len(x)+1) if i / normalize % 10 == 0]  # Plotte nur X-Werte, die ganze Zahlen sind
     x_tick_labels = [int(pos / normalize) for pos in x_tick_positions]
     plt.xticks(ticks=x_tick_positions, labels=x_tick_labels, fontsize=tick_fontsize_x)
 

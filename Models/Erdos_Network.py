@@ -19,5 +19,3 @@ def Erdos_Network(N: int, p = 10**(-3)):
     Connection_arr = [np.array(sublist) for sublist in Connection_arr]
 
     return Connection_arr
-
-# yuhulala
