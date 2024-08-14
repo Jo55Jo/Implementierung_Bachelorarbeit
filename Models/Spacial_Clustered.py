@@ -50,12 +50,12 @@ def Spacial_Clustered(N: int, dentritic_radius = 20):
     
     #Converting from array of lists to array of arrays 
     Connection_arr = [np.array(sublist) for sublist in Connection_arr]
-    return Connection_arr
+    return Connection_arr, Somata, Axons
 
 
 
 # int, float, float -> 1 x list of tuples (ordered in x direction)
-# takes number of neurons,  field_size and soma-radus and returns 2 lists... 
+# takes number of neurons,  field_size and soma-radus and returns 2 lists...
 # ...of touples (points), ordered in x direction
 #! Neurons are spawned on Integer Grid.
 #! I start the Somas at 20 and stop at 4980 so that they don't go over the boundary
@@ -107,15 +107,16 @@ def Draw_Somata(N: int, Somata = [], field_s = 5000, Soma_r = 7.5, dentritic_r =
 # Takes the x_sorted somata list and outputs an list of list. each sublist is a axon with segments. Each Point
 # between which the segments are, is one entrie in the list, starting with the somata. 
 # The list is sorted in the same order as the somata List. 
-def Draw_Axons(N:int , Somata: list, axon_length_average = 100, sigma_length = 10, segment_length = 10, sigma_angle = 15):
+def Draw_Axons(N:int , Somata: list, field_s = 5000, axon_length_average = 1100, rayleigh_scale = 0.9, segment_length = 10, sigma_angle = 15):
     #initialize the list of axons
     Axons = np.empty(N, dtype=object)
     Axons[:] = [list() for _ in range(N)]
 
     # initialize array of axon lenghts drawn from rayligh distribuition #! made by chatGPT (just using np.random.rayleigh doesnt work)
-    axon_lengths = np.random.rayleigh(sigma_length, N)
-    # important to scale ba mean axon length
-    axon_lengths_scaled = axon_lengths * axon_length_average / np.mean(axon_lengths) 
+    axon_lengths = np.random.rayleigh(rayleigh_scale, N)
+    #! ChatGPT made funny stuff. Now it should fit. First i draw from Rayleigh with scale of 0.9 and then multiply by average length
+    axon_lengths_scaled = axon_lengths * axon_length_average
+    
     #for every neuron in x_sorted
     for i, Soma in enumerate(Somata):
         # draw the Somas position at the first entrie of its axons list by first adding the list and then adding the Neuron to that list
@@ -151,6 +152,17 @@ def Draw_Axons(N:int , Somata: list, axon_length_average = 100, sigma_length = 1
             
             # calculate new point. Neuron_x and Neuron_y are now the points of the last points of the drawn axon
             Neuron_x, Neuron_y = new_point_from_angle_distance(Neuron_x, Neuron_y, orientation_angle, segment_length_i)
+            
+            #create no boundary field
+            if Neuron_x > field_s:
+                Neuron_x = Neuron_x-field_s
+            if Neuron_x < 0: 
+                Neuron_x = Neuron_x+field_s
+            if Neuron_y > field_s:
+               Neuron_y = Neuron_y-field_s
+            if Neuron_y < 0: 
+                Neuron_y = Neuron_y+field_s
+            
             # add the new point to the axons list.
             Axons[i].append((Neuron_x, Neuron_y))
 
@@ -159,9 +171,6 @@ def Draw_Axons(N:int , Somata: list, axon_length_average = 100, sigma_length = 1
             index +=1
             pre_orientation_angle = orientation_angle
 
-            
-
-        print(Axons[-1])
     return Axons
 
 
@@ -447,10 +456,10 @@ def run_tests_does_line_intersect_circle():
     assert does_line_intersect_circle(point1, point2, soma, radius) == True, "Testfall 4 fehlgeschlagen"
 
     print("Alle Testfälle erfolgreich ausgeführt.")
+
 '''
 start_time = time.time()
-
-SC = Spacial_Clustered(10000)
+Connection_Arr, Somata, Axons = Spacial_Clustered(10000)
 
 end_time = time.time()
 total_time = end_time - start_time
@@ -458,6 +467,22 @@ total_time = end_time - start_time
 
 print("Spacial Clustered Time: ", total_time)
 
-total_length = sum(len(inner_array) for inner_array in SC)
-print(total_length/10000)
+# Bestimme die Längen der inneren Arrays
+lengths = [len(inner_array) for inner_array in Connection_Arr]
+
+# Berechne den Mittelwert und die Standardabweichung
+mean_length = np.mean(lengths)
+sd_length = np.std(lengths)
+
+# Sortiere die Längen
+sorted_lengths = sorted(lengths)
+
+# Bestimme die 10 längsten und 10 kürzesten Längen
+longest_10 = sorted_lengths[-10:]
+shortest_10 = sorted_lengths[:10]
+
+print("Mean Length of array: ", mean_length)
+print("Standard deviation of array: ", sd_length)
+print("Shortest 10: ", shortest_10)
+print("Longest 10: ", longest_10)
 '''

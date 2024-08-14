@@ -2,8 +2,9 @@ import Run_Model
 import numpy as np
 from Meters_Plots import ActivityPlot as act_plot
 from Functions_Constants_Meters import Constants as cons
+import Make_RuntimeData as rd
 
-global_act, Branching_global, Autocorrelation, Average_Activity, Alpha, Average_Alpha, Avalanche_Distribution = Run_Model.Run_Model("AA", cons.N, cons.Seconds, h=cons.h)
+Global_act, Branching_global, Autocorrelation, Average_Activity, Average_Alpha, Avalanche_Distribution = Run_Model.Run_Model("AA", cons.N, cons.Seconds, h=cons.h)
 
 
 print("Used Modell: AA")
@@ -15,6 +16,9 @@ act_plot.create_activityplot(Average_Activity, "green")
 # you have to import this later because of the subconfigurations of the plots
 from Meters_Plots import AvalanchePlot as ava_plot
 ava_plot.plot_log_histogram(Avalanche_Distribution, f"Avalanche Distribution h = {cons.h}")
+
+
+rd.save_run_data(Global_act, Branching_global, Autocorrelation, Average_Activity, Average_Alpha, Avalanche_Distribution)
 
 print("")
 print("Number of Neurons: 10000")

@@ -82,23 +82,21 @@ def Run_Model(model: str, N: int, Seconds: int, h: float):
         if i % 4 == 0:
             #Update average Activity
             Average_Activity_t = Activity_Tracker / (N * cons.delta_t_act)
-            average_alpha = np.average(Alpha)
+            average_alpha_t = np.average(Alpha)
 
             # Reset the activity tracker to 0
             Activity_Tracker = 0
 
             # append every 4 Seconds to the lists
-            Average_Alpha.append(average_alpha)
+            Average_Alpha.append(average_alpha_t)
             Average_Activity.append(Average_Activity_t)
 
             #Print average results
             #print("Iteration: ", i)
             #print("Average Tracker: ", Average_Activity_t)
             
-            #print("Average Alpha: ", average_alpha)
             
 
-        #print("global Activity now: ", glob_t)
         # Collect activity in lists for later plotting
         Global_act.append(glob_t)
 
@@ -109,13 +107,12 @@ def Run_Model(model: str, N: int, Seconds: int, h: float):
             autocorr_t = meters.Autocorrelation_Time(cons.delta_t, branch_glob)
 
             # add meters to collection
-            #Branching_ind.append(branch_ind_t)
             Branching_global.append(branch_glob)
             Autocorrelation.append(autocorr_t)
 
 
             print("Iteration:", i)
-            ("Average Tracker: ", glob_t)
+            print("Average Tracker: ", glob_t)
             #print("Branching Parameter:", branch_glob)
             #print("Autocorrelation: ", autocorr_t)
         
@@ -134,7 +131,7 @@ def Run_Model(model: str, N: int, Seconds: int, h: float):
         state_value_new = []
 
 
-    return Global_act, Branching_global, Autocorrelation, Average_Activity, Alpha, Average_Alpha, Avalanche_Distribution
+    return Global_act, Branching_global, Autocorrelation, Average_Activity, Average_Alpha, Avalanche_Distribution
 
 # string -> array of lists
 # Choice is one of ["AA", "ER", "SC", "SC_10000_{i}"] <- "SC_10000_{i}" takes an already compiled Conn_array from a database where i is the specific array. 

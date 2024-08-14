@@ -1,8 +1,8 @@
 # Number of Neurons (N)
-N = 1000
+N = 10000
 
 # Extern Input (h) Element of [0, 0.1, 0.01, 0.001, 0.0001]
-h = 0.001
+h = 0.01
 
 # Target-rate (r*) = 1 second
 r_target = 1
@@ -17,6 +17,4 @@ delta_t_act = 0.004
 tau_hp = 10**3
 
 # Running Time
-Seconds = 5
-
-
+Seconds = 30

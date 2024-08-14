@@ -3,7 +3,8 @@ import math
 from Functions_Constants_Meters import Constants as cons
 
 
-
+#! Not used anymore because it makes more sense to do it directly during runtime
+'''
 # np.ndarray -> int
 # counts how many Neurons are activ at a given time
 def Global_Activity(state_value_new: list):
@@ -13,14 +14,13 @@ def Global_Activity(state_value_new: list):
 #! Das ist irgendwie komisch gemacht. Das ergibt glaube ich wenig Sinn
 # int(global activity), int(momentan iteration (seconds/delta_t)), int(average_constant), float (delta_t) -> float(average_activity)
 # returns the average activity for every "average_constant" iteration (every delta_t)
-average_activity = 0
-
 def Average_Activity(N: int, glob: int, iteration: int, average_constant = 4, delta_t = cons.delta_t):
-    
-    if iteration % 4 == 0:
-        average_activity = glob/N*delta_t
-    return average_activity
 
+    if iteration % 4 == 0:
+        #The paper uses Delta_t = 4 Millisekonds so 4 times deltat
+        average_activity = glob/N*delta_t*4
+    return average_activity
+'''
         
 
     
