@@ -13,7 +13,7 @@ plt.rcParams['figure.subplot.wspace'] = 0.2
 plt.rcParams['figure.subplot.hspace'] = 0.2
 
 
-def plot_log_histogram(data, title):
+def plot_log_histogram(data, title, col):
     """
     Plots a histogram with logarithmically distributed bins from 10^0 to 10^6 and normalizes the counts to probabilities.
     
@@ -38,7 +38,7 @@ def plot_log_histogram(data, title):
     
     # Plot the histogram on a log-log scale
     plt.figure(figsize=(5, 3))
-    plt.scatter(bin_centers, probabilities, color='blue', label='Data')
+    plt.scatter(bin_centers, probabilities, label='Data')
     
     # Set log-log scale
     plt.xscale('log')
@@ -59,11 +59,11 @@ def plot_log_histogram(data, title):
     # Labels and title
     plt.xlabel('Avalanche Size', fontsize=16)
     plt.ylabel('Probability', fontsize=16)
-    plt.title(title, fontsize=20)
+    plt.title(title, fontsize=20, color=col)
     plt.legend()
 
         # Saving the Plot in a plots directory
-    output_dir = "plots"
+    output_dir = "Ploting/plots"
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 

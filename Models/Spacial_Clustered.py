@@ -456,9 +456,9 @@ def run_tests_does_line_intersect_circle():
     assert does_line_intersect_circle(point1, point2, soma, radius) == True, "Testfall 4 fehlgeschlagen"
 
     print("Alle Testfälle erfolgreich ausgeführt.")
-
 '''
 start_time = time.time()
+print(start_time)
 Connection_Arr, Somata, Axons = Spacial_Clustered(10000)
 
 end_time = time.time()
@@ -467,22 +467,5 @@ total_time = end_time - start_time
 
 print("Spacial Clustered Time: ", total_time)
 
-# Bestimme die Längen der inneren Arrays
-lengths = [len(inner_array) for inner_array in Connection_Arr]
 
-# Berechne den Mittelwert und die Standardabweichung
-mean_length = np.mean(lengths)
-sd_length = np.std(lengths)
-
-# Sortiere die Längen
-sorted_lengths = sorted(lengths)
-
-# Bestimme die 10 längsten und 10 kürzesten Längen
-longest_10 = sorted_lengths[-10:]
-shortest_10 = sorted_lengths[:10]
-
-print("Mean Length of array: ", mean_length)
-print("Standard deviation of array: ", sd_length)
-print("Shortest 10: ", shortest_10)
-print("Longest 10: ", longest_10)
 '''

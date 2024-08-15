@@ -49,7 +49,7 @@ def Branching_Parameters(N: int, Connection_arr: np.ndarray, Alpha: np.array):
 
     # calculate the global_branching_parameter
     Branching_Parameter_global = Branching_Parameter_ind.mean()
-    return Branching_Parameter_global, Branching_Parameter_ind
+    return Branching_Parameter_global
 
 
 # float (Timeconstant), float (Branching_Parameter_gloabal) --> float (Autocorrelation_time)

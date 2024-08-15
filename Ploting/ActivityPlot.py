@@ -11,7 +11,7 @@ plt.rcParams['figure.subplot.top'] = 0.64
 plt.rcParams['figure.subplot.wspace'] = 0.2
 plt.rcParams['figure.subplot.hspace'] = 0.2
 
-def create_activityplot(activity_list: list, color_plot: str):
+def create_activityplot(activity_list: list, color_plot: str, h_string: str):
     # Erstellen der Figur und Zugriff auf ihre Größe
     fig = plt.figure(figsize=(6, 3), dpi=200)
     fig_width, fig_height = fig.get_size_inches()
@@ -58,11 +58,11 @@ def create_activityplot(activity_list: list, color_plot: str):
     plt.xticks(ticks=x_tick_positions, labels=x_tick_labels, fontsize=tick_fontsize_x)
 
     # Titel hinzufügen
-    plt.title(r'$\frac{h}{r^*} = 10^0$', color=color_plot, fontsize=title_fontsize, pad=40, fontweight='bold')
+    plt.title(r'$\frac{h}{r^*} = $' + h_string, color=color_plot, fontsize=title_fontsize, pad=40, fontweight='bold')
 
 
     # Saving the Plot in a plots directory
-    output_dir = "plots"
+    output_dir = "Ploting/plots"
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
