@@ -3,9 +3,8 @@ import Functions_Constants_Meters.Constants as cons
 
 #----------------------------------------
 # Necessary Constants
-Timeconstant = cons.delta_t
+Timestep = cons.delta_t
 Timeconstant_hp = cons.tau_hp
-Target_Rate = cons.r_target
 #----------------------------------------
 
 # int, ndarray -> ndarray (updated state_values)
@@ -26,52 +25,46 @@ def External_Input(N: int, state_value: list, h: float, delta_t=Timeconstant):
 
 
 
-# NxN Matrix, ndarray, ndarray, ndarray -> nd.array (updated Statevalues)
-# Takes the Neuron matrix, the homeostatic-scaling-array, the old state-value-array, the actual state-value-array calculates the update of the state-value array
-#! Because it is very unlikely that an neuron was activated by external input, we first calculate whether it is updated by previous activation and then check whether it is already active
-def Spike_Propagation(Connection_arr: np.ndarray, state_value: list, state_value_old: list, Alpha: np.ndarray):
-    #Für jedes Neuron
-    for i in range(len(Connection_arr)):
 
-        Spike_i = 0
+# Takes the Neuron array of array, the homeostatic-scaling-array, the old state-value-array, the actual state-value-array calculates the update of the state-value array
+#! Because it is very unlikely that an neuron was activated by external input, we first calculate whether it is updated by previous activation and then check whether it is already active
+def Spike_Propagation(Connection_arr: np.ndarray, state_value_new: list, state_value_old: list, Alpha: np.ndarray):
+    #The new state_value includes the externaly activated neurons
+
+    # for every neuron that was active last iteration
+    for neuron in state_value_old:
+        neuron = int(neuron)
 
         # for every connection with a neuron that was active in t_-1
-        for connection in Connection_arr[i]:
-            if connection in state_value_old:
-                Spike_i += 1
+        for con_neuron in Connection_arr[neuron]:
+            con_neuron = int(con_neuron)
     
         # Calculate the probability for Neuron i to be Active with homeostatic scaling factor of i and number of activated connections
-        #! es gibt ein Problem, wenn Alpha > 1 dann funktioniert es nicht mehr und Alpha > 1 ist theoretisch möglich
+            if np.random.binomial(1, Alpha[con_neuron]) == 1:
 
-        if np.random.binomial(Spike_i, Alpha[i]) == 1:
-            #check whether the neuron is already activ
-            if i not in state_value:
-                state_value.append(i)
+                #check whether the neuron is already activ
+                if con_neuron not in state_value_new:
+                    state_value_new.append(con_neuron)
 
-
-    return state_value
+    return state_value_new
 
 
 #ndarray, ndarray -> nd.array (update of homeostatic-scaling-values)
 #takes the array of state-value and homeostatic-scaling-factor and returns the updated homeostatic-scaling-factor
-def Update_Homeostatic_Scaling(state_value: list, Alpha: np.ndarray):
+def Update_Alpha(state_value: list, Alpha: np.ndarray):
     # For every neuron ist homeostatic-scaling-factor is adjusted
     for i, Alpha_i in enumerate(Alpha):
         #calculate Delta_Alpha[i]
         if i in state_value:
-            Alpha_updated = Alpha_i + Delta_Homeostatic_Scaling(1)
+            Alpha_updated = Alpha_i + Delta_Alpha(1, i)
         else:
-            Alpha_updated = Alpha_i + Delta_Homeostatic_Scaling(0)
-
-        #! Alpha cannot be bigger then 1, can it? No, as it will create the probability for an activation which therefor has to be between 0/1
-        if Alpha_updated > 1:
-            Alpha_updated = 1
-
-        if Alpha_updated < 0:
-            Alpha_updated = 0
+            Alpha_updated = Alpha_i + Delta_Alpha(0, i)
 
         #update Apha[i]
         Alpha[i] = Alpha_updated
+    
+    #! Alpha cannot be bigger then 1, can it? No, as it will create the probability for an activation which therefor has to be between 0/1
+    Alpha = np.clip(Alpha, 0, 1)
 
     return Alpha
 
@@ -79,9 +72,12 @@ def Update_Homeostatic_Scaling(state_value: list, Alpha: np.ndarray):
 
 #int (0 or 1) -> float
 #takes statevalue for individual neuron and returns the update value for homeostatic scaling factor
-def Delta_Homeostatic_Scaling(state_value: int, r_target = Target_Rate, delta_t = Timeconstant, tau_hp = Timeconstant_hp):
-    alpha = (delta_t*r_target-state_value)*(delta_t/tau_hp)
+#int (0 or 1) -> float
+#takes statevalue for individual neuron and returns the update value for homeostatic scaling factor
+def Delta_Alpha(state_value: int, neuron: int, delta_t = Timestep, tau_hp = Timeconstant_hp):
+    if not cons.log_r:
+        alpha = (delta_t*cons.r_target-state_value)*(delta_t/tau_hp)
+    else:
+        alpha = (delta_t*cons.r_log_target[neuron]-state_value)*(delta_t/tau_hp)
     return alpha
 
-#! delta_alpha better name 
-#! timestep better as delta_t

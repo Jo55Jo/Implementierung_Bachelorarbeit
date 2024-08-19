@@ -8,7 +8,6 @@ from Functions_Constants_Meters import Constants as cons
 from Functions_Constants_Meters import Meters as meters
 import sqlite3
 import pickle
-import matplotlib.pyplot as plt
 
 # String (modell), int (size), int(iterations), float (input is one of: [0, 0.1, 0.01, 0.001, 0.0001]) -> , list (Population activity), list of np.ndarrays (individual activity), list (Branching Parameter), list (Autocorrelation Time)
 # model is one of: "AA", "ER", "SC", "SC_10000_{i}"
@@ -19,7 +18,7 @@ import matplotlib.pyplot as plt
 # runs the whole model. Individual Parameters for models or functions have to be adjusted in the according files
 def Run_Model(model: str, N: int, Seconds: int, h: float):
     # initialize state_value_old, Alphaa (homostatic array)
-    state_value_old = np.zeros(shape=N)
+    state_value_old = []
     # initializing Alpha. As k = 4 in the models we use 0.25 for h≠1 (h=1 we use 0 so that it doesnt take so long until its giving resonable results)
     Alpha           = np.random.normal(cons.Alpha_init, cons.SD_init, N)
     # Alpha           = np.zeros(N)
@@ -45,6 +44,7 @@ def Run_Model(model: str, N: int, Seconds: int, h: float):
     #Activity Tracker for measuring average activity
     Activity_Tracker = 0
 
+
     for i in range(Iterations):        
 
         # get Connection Array
@@ -56,14 +56,14 @@ def Run_Model(model: str, N: int, Seconds: int, h: float):
 
 
         # nacheinander Funktionen ausführen
-        state_value_new = funs.External_Input(N, state_value_new, h)
-        state_value_new = funs.Spike_Propagation(Connection_arr, state_value_new, state_value_old, Alpha)
-        #! The homeostatic scaling is updated with the actual state_value_new. is that correct?
-        Alpha = funs.Update_Homeostatic_Scaling(state_value_new, Alpha)
+        external_activated = funs.External_Input(N, state_value_new, h)
+        state_value_new = funs.Spike_Propagation(Connection_arr, external_activated, state_value_old, Alpha)
+        Alpha = funs.Update_Alpha(state_value_new, Alpha)
 
         # meter global and global average activity 
         glob_t = len(state_value_new)
         Activity_Tracker += glob_t
+
         
         # we calculate the average global activity for time steps of 4 Milliseconds
         if i % 4 == 0:
@@ -78,10 +78,19 @@ def Run_Model(model: str, N: int, Seconds: int, h: float):
             Average_Activity.append(Average_Activity_t)
             Average_Alpha.append(average_alpha_t)
             
-
+            
 
         # Collect activity in lists for later plotting
         Global_act.append(glob_t)
+
+
+        #Print global activity if it is not 0
+        '''
+        if glob_t != 0:
+            #print("Iteration: ", i)
+            print("Global Activity: ", glob_t)
+        '''
+
 
         
         #Do metering of Branching parameter and autocorrelation
@@ -96,9 +105,10 @@ def Run_Model(model: str, N: int, Seconds: int, h: float):
 
 
             print("Iteration:", i)
-            print("Global Activity Now: ", glob_t)
-            print("Branching Parameter:", branch_glob)
-            print("Autocorrelation: ", autocorr_t)
+            #print("Global Activity Now: ", glob_t)
+            #print("Branching Parameter:", branch_glob)
+            #print("Autocorrelation: ", autocorr_t)
+            #print("Average Alpha: ", average_alpha_t)
         
 
         # If there is zero activity but the tracker is not 0, then the avalanche is over so return to 0 and 

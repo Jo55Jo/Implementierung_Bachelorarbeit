@@ -53,13 +53,15 @@ def create_activityplot(activity_list: list, color_plot: str, h_string: str):
     plt.yticks([0, 20], fontsize=tick_fontsize_y)
 
     # Set custom x-ticks to display only integer labels
-    x_tick_positions = [i for i in range(len(x)+1) if i / normalize % 10 == 0]  # Plotte nur X-Werte, die ganze Zahlen sind
+    x_tick_positions = [i for i in range(len(x)+1) if i / normalize % 100 == 0]  # Plotte nur X-Werte, die ganze Zahlen sind
     x_tick_labels = [int(pos / normalize) for pos in x_tick_positions]
     plt.xticks(ticks=x_tick_positions, labels=x_tick_labels, fontsize=tick_fontsize_x)
 
     # Titel hinzufügen
-    plt.title(r'$\frac{h}{r^*} = $' + h_string, color=color_plot, fontsize=title_fontsize, pad=40, fontweight='bold')
-
+    if not cons.log_r:
+        plt.title(r'$\frac{h}{r^*} = $' + h_string, color=color_plot, fontsize=title_fontsize, pad=40, fontweight='bold')
+    else:
+        plt.title(r'$\frac{h}{r^*} = $' + h_string + " log_r", color=color_plot, fontsize=title_fontsize, pad=40)
 
     # Saving the Plot in a plots directory
     output_dir = "Ploting/plots"
