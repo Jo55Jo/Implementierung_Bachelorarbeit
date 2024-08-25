@@ -7,6 +7,7 @@ import RESEARCH_Subset.Subset as research
 from Functions_Constants_Meters import Functions as funs
 from Functions_Constants_Meters import Constants as cons
 from Functions_Constants_Meters import Meters as meters
+
 import sqlite3
 import pickle
 
@@ -47,6 +48,10 @@ def Run_Model_subset(model: str, N: int, Seconds: int, h: float):
     Activity_Tracker_sub = 0
     Activity_Tracker_rest = 0
 
+    #Homeostatic value trackers
+    Average_Alpha_sub = [] 
+    Average_Alpha_rest = []
+
     for i in range(Iterations):        
 
         # get Connection Array
@@ -78,7 +83,7 @@ def Run_Model_subset(model: str, N: int, Seconds: int, h: float):
             #Update average Activity and average Alpha
             AA_sub = Activity_Tracker_sub / (cons.Subset_size * cons.delta_t_act)
             AA_rest = Activity_Tracker_rest / ((N-cons.Subset_size) * cons.delta_t_act)
-            average_alpha_t = np.average(Alpha)
+
 
             # Reset the activity tracker to 0
             Activity_Tracker_sub = 0
@@ -87,7 +92,12 @@ def Run_Model_subset(model: str, N: int, Seconds: int, h: float):
             # append every 4 Seconds to the lists for average Activity and average alpha
             Average_Activity_sub.append(AA_sub)
             Average_Activity_rest.append(AA_rest)
-            Average_Alpha.append(average_alpha_t)
+
+            # caluclate and append the 
+            average_alpha_sub = np.mean(Alpha[:cons.Subset_size])
+            average_alpha_rest = np.mean(Alpha[cons.Subset_size:])
+            Average_Alpha_sub.append(average_alpha_sub)
+            Average_Alpha_rest.append(average_alpha_rest)
             
 
 
@@ -126,7 +136,7 @@ def Run_Model_subset(model: str, N: int, Seconds: int, h: float):
         state_value_new = []
 
 
-    return Global_act, Branching_global, Autocorrelation, Average_Activity_sub, Average_Activity_rest, Average_Alpha, Avalanche_Distribution
+    return Global_act, Branching_global, Autocorrelation, Average_Activity_sub, Average_Activity_rest, Average_Alpha_sub, Average_Alpha_rest, Avalanche_Distribution
 
 # string -> array of lists
 # Choice is one of ["AA", "ER", "SC", "SC_10000_{i}"] <- "SC_10000_{i}" takes an already compiled Conn_array from a database where i is the specific array. 

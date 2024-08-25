@@ -9,7 +9,7 @@ Timeconstant_hp = cons.tau_hp
 
 # int, ndarray -> ndarray (updated state_values)
 # Sets the State_value to active with a certain probability that depends on the external-input-rate h and the timeconstant tau
-def External_Input(N: int, state_value: list, h: float, delta_t=Timeconstant):
+def External_Input(N: int, state_value: list, h: float, delta_t=Timestep):
     # probability for external spike to activate Neuron
     p = 1 - np.exp(-h * delta_t)
 

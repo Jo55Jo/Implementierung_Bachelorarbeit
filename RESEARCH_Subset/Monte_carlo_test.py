@@ -1,6 +1,6 @@
 import numpy as np
 
-def simulate_branching_process(threshold, p=0.263, max_generations=1000):
+def simulate_branching_process(threshold, p=0.25, max_generations=1000):
     active_neurons = 1  # Start mit einem aktiven Neuron
     total_neurons = 1
     

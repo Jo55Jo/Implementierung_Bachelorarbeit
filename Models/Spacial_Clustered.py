@@ -1,7 +1,15 @@
 import numpy as np
 import math
-import time
-    
+import sys
+import os
+# append parent directory for importing constants
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+sys.path.append(parent_dir)
+from Functions_Constants_Meters import Constants as cons
+
+#! Scaling field size depending on number of neurons
+FIELD_SIZE = int(5000*math.sqrt(cons.N/10000))
+
 # int (N), int (dentritic radii = 20müm in paper == 20) -> NxN matrix (connections)
 # X_sorted list of somata, the list of axons, the dentritic radii and the number of neurons are given into the Function that draws the connections into the connection matrix. 
 
@@ -59,7 +67,8 @@ def Spacial_Clustered(N: int, dentritic_radius = 20):
 # ...of touples (points), ordered in x direction
 #! Neurons are spawned on Integer Grid.
 #! I start the Somas at 20 and stop at 4980 so that they don't go over the boundary
-def Draw_Somata(N: int, Somata = [], field_s = 5000, Soma_r = 7.5, dentritic_r = 20):
+def Draw_Somata(N: int, Somata = [], field_s = FIELD_SIZE, Soma_r = 7.5, dentritic_r = 20):
+
     #redo it recursively for every time it failed because radii overlaped
     fails = 0
     for Neuron in range(N):
@@ -92,6 +101,10 @@ def Draw_Somata(N: int, Somata = [], field_s = 5000, Soma_r = 7.5, dentritic_r =
     if fails > 0:
         Draw_Somata(fails, Somata)
 
+    # if we have the subset condition, We want to plot the inner neurons red so we sort the array such that most central neurons are at the beginning
+    if cons.Subset:
+        Somata = sort_by_distance(Somata, FIELD_SIZE)
+
     return Somata
 
 
@@ -107,7 +120,7 @@ def Draw_Somata(N: int, Somata = [], field_s = 5000, Soma_r = 7.5, dentritic_r =
 # Takes the x_sorted somata list and outputs an list of list. each sublist is a axon with segments. Each Point
 # between which the segments are, is one entrie in the list, starting with the somata. 
 # The list is sorted in the same order as the somata List. 
-def Draw_Axons(N:int , Somata: list, field_s = 5000, axon_length_average = 1100, rayleigh_scale = 0.9, segment_length = 10, sigma_angle = 15):
+def Draw_Axons(N:int , Somata: list, field_s = FIELD_SIZE, axon_length_average = 1100, rayleigh_scale = 0.9, segment_length = 10, sigma_angle = 15):
     #initialize the list of axons
     Axons = np.empty(N, dtype=object)
     Axons[:] = [list() for _ in range(N)]
@@ -115,7 +128,10 @@ def Draw_Axons(N:int , Somata: list, field_s = 5000, axon_length_average = 1100,
     # initialize array of axon lenghts drawn from rayligh distribuition #! made by chatGPT (just using np.random.rayleigh doesnt work)
     axon_lengths = np.random.rayleigh(rayleigh_scale, N)
     #! ChatGPT made funny stuff. Now it should fit. First i draw from Rayleigh with scale of 0.9 and then multiply by average length
-    axon_lengths_scaled = axon_lengths * axon_length_average
+    # Die mittlere Länge nach dem Skalieren auf 1100 korrigieren
+    scale_factor = axon_length_average / np.mean(axon_lengths)
+    axon_lengths_scaled = axon_lengths * scale_factor
+
     
     #for every neuron in x_sorted
     for i, Soma in enumerate(Somata):
@@ -336,6 +352,28 @@ def does_line_intersect_circle(point1, point2, soma, radius):
     else:
         return False
 
+
+#--------------------------- helper for somata in subset condition (made by Gpt) ---------------------------
+def distance_from_center(point, center):
+    """
+    Calculate the Euclidean distance between a point and the center.
+    """
+    return math.sqrt((point[0] - center[0]) ** 2 + (point[1] - center[1]) ** 2)
+
+def sort_by_distance(coords, field_size):
+    """
+    Sorts a list of tuples (coordinates) by their distance from the center of the field.
+    
+    Args:
+    - coords: List of tuples representing coordinates (x, y).
+    - field_size: Size of the field (assuming square field of field_size x field_size).
+    
+    Returns:
+    - List of tuples sorted by distance from the center.
+    """
+    center = (field_size / 2, field_size / 2)
+    sorted_coords = sorted(coords, key=lambda point: distance_from_center(point, center))
+    return sorted_coords
 
 
 #--------------------------- tests ---------------------------

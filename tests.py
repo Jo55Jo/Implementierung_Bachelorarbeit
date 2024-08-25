@@ -3,6 +3,9 @@ from Ploting import ActivityPlot as act_plot
 from Functions_Constants_Meters import Constants as cons
 import Runtime_Data.Make_RuntimeData as rd
 
+# if its tests, cons.Subset should be false
+cons.Subset = False
+cons.Fluctuating_h = False
 
 # Running the model, please set variables in Constants.py
 Global_act, Branching_global, Autocorrelation, Average_Activity, Average_Alpha, Avalanche_Distribution = Run_Model.Run_Model("AA", cons.N, cons.Seconds, h=cons.h)
@@ -51,11 +54,11 @@ print("")
 print("Used Modell: ", cons.model)
 print("Number of Neurons: ", cons.N)
 print("Running Time: ", cons.Seconds)
-print("Time Step Size: ", cons.delta_t)
 print("Input rate h:", cons.h)
 print("Target Spiking Rate: ", cons.r_target)
 print("Homeostatic Constant: ", cons.tau_hp)
 print("Alpha init: ", cons.Alpha_init)
+#print("Time Step Size: ", cons.delta_t)
 #print("last branching parameter: ", Branching_global[-1])
 #print("last autocorrelation time: ", Autocorrelation[-1])
 #print("Average_Alpha:", np.average(Alpha))

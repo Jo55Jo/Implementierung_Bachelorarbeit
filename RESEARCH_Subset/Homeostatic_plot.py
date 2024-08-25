@@ -15,7 +15,7 @@ plt.rcParams['figure.subplot.hspace'] = 0.2
 import os
 import matplotlib.pyplot as plt
 
-def create_activityplot_subset(activity_list1: list, activity_list2: list, color_plot: str, h_string: str):
+def plot_homeostatic_subset(homeo_1: list, homeo_2: list, color_plot: str, h_string: str):
     # Erstellen der Figur und Zugriff auf ihre Größe
     fig = plt.figure(figsize=(6, 3), dpi=200)
     fig_width, fig_height = fig.get_size_inches()
@@ -27,13 +27,13 @@ def create_activityplot_subset(activity_list1: list, activity_list2: list, color
     tick_fontsize_x = fig_height * 3.0    # Beispiel: 5.0 mal die Höhe der Figur
 
     # X-Achse: Zeit in diskreten Zeitschritten (Sekunden / delta_t)
-    x = range(len(activity_list1))
+    x = range(len(homeo_1))
     # Normalize with N/4 because delta_t is 4 for average activity in the paper
     normalize = cons.N / 4
 
     # Y-Achse: Aktivitätswerte
-    y1 = activity_list1
-    y2 = activity_list2
+    y1 = homeo_1
+    y2 = homeo_2
 
     # Plotte die erste Liste (Group1)
     plt.plot(x, y1, color=color_plot, linewidth=1, label='Active')
@@ -52,15 +52,15 @@ def create_activityplot_subset(activity_list1: list, activity_list2: list, color
     plt.xlabel('Seconds', fontsize=label_fontsize, fontweight=500)
 
     # Y-Achse festlegen und Maximum auf 40 setzen
-    plt.ylabel(r'$a_t$ (Hz)', fontsize=label_fontsize, fontweight=500, labelpad=20, rotation=0)  
+    plt.ylabel('Alpha', fontsize=label_fontsize, fontweight=500, labelpad=20, rotation=0)  
     plt.gca().yaxis.set_label_position("left")
     plt.gca().yaxis.set_label_coords(0.05, 1.0)  # Position der Y-Achsenbeschriftung anpassen
-    plt.ylim(0, 40)  # Setze das Maximum der Y-Achse auf 40
+    plt.ylim(0, 0.5)  # Setze das Maximum der Y-Achse auf 40
 
     # Y-Achse nur bei 20 und 40 beschriften
-    plt.yticks([0, 20], fontsize=tick_fontsize_y)
+    plt.yticks([0, 0.25, 0.5], fontsize=tick_fontsize_y)
 
-    #Set custom x-ticks to display only integer labels
+    # Set custom x-ticks to display only integer labels
     if cons.Seconds < 10:
         x_tick_positions = [i for i in range(len(x)+1) if i / normalize % 1 == 0]  # Plotte nur X-Werte, die ganze Zahlen sind
     elif cons.Seconds < 100:
@@ -82,7 +82,7 @@ def create_activityplot_subset(activity_list1: list, activity_list2: list, color
         os.makedirs(output_dir)
 
     # Basis-Dateiname ohne Erweiterung
-    base_filename = "Activity"
+    base_filename = "Homeostatic"
     file_extension = ".png"
 
     # Finde einen nicht vorhandenen Dateinamen durch Anhängen einer Zahl

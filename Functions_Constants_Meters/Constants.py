@@ -5,10 +5,10 @@ import numpy as np
 N = 1000
 
 # Extern Input (h) Element of [0, 0.1, 0.01, 0.001, 0.0001]
-h = 0.01
+h = 0.001
 
 # Running Time
-Seconds = 300
+Seconds = 1000
 
 # model one of: "AA", "ER", "SC"
 model = "AA"
@@ -16,7 +16,7 @@ model = "AA"
 # Alpha Init: to shorten the burn in phase. In case fo AA with 4 connections, a value arround 0.25 makes sense. For big h it should be lower. For h = 1 it should be 0: Float
 # Sigma Init: Standard deviation for the Alpha initialization: Float
 # Init Activitiy: How many neurons should be active at the start 
-Alpha_init = 0.235
+Alpha_init = 0.25
 SD_init = 0.0
 Init_Activity = 0
 
@@ -29,6 +29,7 @@ tau_hp = 10**3
 
 # <<<<<<Subset>>>>>>>
 # Size of the subset 
+Subset = False
 Subset_size = 100
 
 
@@ -50,4 +51,5 @@ delta_t = 0.001
 
 # timestep for Activity Tracker
 delta_t_act = 0.004
+
 

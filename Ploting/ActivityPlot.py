@@ -53,7 +53,12 @@ def create_activityplot(activity_list: list, color_plot: str, h_string: str):
     plt.yticks([0, 20], fontsize=tick_fontsize_y)
 
     # Set custom x-ticks to display only integer labels
-    x_tick_positions = [i for i in range(len(x)+1) if i / normalize % 100 == 0]  # Plotte nur X-Werte, die ganze Zahlen sind
+    if cons.Seconds < 10:
+        x_tick_positions = [i for i in range(len(x)+1) if i / normalize % 1 == 0]  # Plotte nur X-Werte, die ganze Zahlen sind
+    elif cons.Seconds < 100:
+        x_tick_positions = [i for i in range(len(x)+1) if i / normalize % 10 == 0]  # Plotte nur X-Werte, die ganze Zahlen sind
+    else:
+        x_tick_positions = [i for i in range(len(x)+1) if i / normalize % 100 == 0]  # Plotte nur X-Werte, die ganze Zahlen sind
     x_tick_labels = [int(pos / normalize) for pos in x_tick_positions]
     plt.xticks(ticks=x_tick_positions, labels=x_tick_labels, fontsize=tick_fontsize_x)
 

@@ -3,6 +3,9 @@ from RESEARCH_fluctuatingH import ActivityPlot_fluctuatingH as act_plot
 from Functions_Constants_Meters import Constants as cons
 import Runtime_Data.Make_RuntimeData as rd
 
+# subset should be false, fluctuating true
+cons.Subset = False
+cons.Fluctuating_h = True
 
 # Running the model, please set variables in Constants.py
 Global_act, Branching_global, Autocorrelation, Average_Activity, Average_Alpha, Avalanche_Distribution, Fluctuating_h = Run_model_h.Run_Model_h("AA", cons.N, cons.Seconds, h=cons.h)
