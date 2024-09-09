@@ -24,8 +24,9 @@ def create_activityplot(activity_list: list, color_plot: str, h_string: str):
 
     # X-Achse: Zeit in diskreten Zeitschritten (Sekunden / delta_t)
     x = range(len(activity_list))
-    # Normalize with N/4 because delta_t is 4 for average activity in the paper
-    normalize =  cons.N/4 
+
+    # Normalize 1000 (because that is the timesteps) and divide by 4 (as that is the step were we sample average activity)
+    normalize = 1000 / 4
 
     # Y-Achse: Aktivitätswerte
     y = activity_list
@@ -52,16 +53,20 @@ def create_activityplot(activity_list: list, color_plot: str, h_string: str):
     # Y-Achse nur bei 20 und 40 beschriften
     plt.yticks([0, 20], fontsize=tick_fontsize_y)
 
+    
     # Set custom x-ticks to display only integer labels
+   
     if cons.Seconds < 10:
         x_tick_positions = [i for i in range(len(x)+1) if i / normalize % 1 == 0]  # Plotte nur X-Werte, die ganze Zahlen sind
-    elif cons.Seconds < 100:
-        x_tick_positions = [i for i in range(len(x)+1) if i / normalize % 10 == 0]  # Plotte nur X-Werte, die ganze Zahlen sind
     else:
-        x_tick_positions = [i for i in range(len(x)+1) if i / normalize % 100 == 0]  # Plotte nur X-Werte, die ganze Zahlen sind
+        x_tick_positions = [i for i in range(len(x)+1) if i / normalize % 10 == 0]  # Plotte nur X-Werte, die ganze Zahlen sind
+    
+    
+    
+    
     x_tick_labels = [int(pos / normalize) for pos in x_tick_positions]
     plt.xticks(ticks=x_tick_positions, labels=x_tick_labels, fontsize=tick_fontsize_x)
-
+    
     # Titel hinzufügen
     if not cons.log_r:
         plt.title(r'$\frac{h}{r^*} = $' + h_string, color=color_plot, fontsize=title_fontsize, pad=40, fontweight='bold')

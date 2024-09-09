@@ -5,13 +5,13 @@ import numpy as np
 N = 1000
 
 # Extern Input (h) Element of [0, 0.1, 0.01, 0.001, 0.0001]
-h = 0.001
+h = 0.01
 
 # Running Time
-Seconds = 1000
+Seconds = 20
 
 # model one of: "AA", "ER", "SC"
-model = "AA"
+model = "SC"
 
 # Alpha Init: to shorten the burn in phase. In case fo AA with 4 connections, a value arround 0.25 makes sense. For big h it should be lower. For h = 1 it should be 0: Float
 # Sigma Init: Standard deviation for the Alpha initialization: Float
@@ -29,7 +29,7 @@ tau_hp = 10**3
 
 # <<<<<<Subset>>>>>>>
 # Size of the subset 
-Subset = False
+Subset = True
 Subset_size = 100
 
 

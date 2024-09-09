@@ -40,7 +40,7 @@ def Branching_Parameters(N: int, Connection_arr: np.ndarray, Alpha: np.array):
         # for every connected neuron
         for connection in Connection_arr[i]:
             # If there is activity in that neuron increment the individual count
-            Branching_count += Alpha[connection]
+            Branching_count += 1
 
 
         

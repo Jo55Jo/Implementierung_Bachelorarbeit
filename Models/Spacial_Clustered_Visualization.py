@@ -51,7 +51,7 @@ print("Longest 10: ", longest_10)
 field_size = int(5000*math.sqrt(cons.N/10000))
 
 # Beispiel-Koordinaten (Tupel) und Radius
-radius = 20
+radius = 7.5
 
 # Erstelle ein leeres Feld
 field = np.zeros((field_size, field_size))
