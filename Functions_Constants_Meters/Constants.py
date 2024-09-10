@@ -2,16 +2,16 @@ import numpy as np
 # -------- Model from Paper -----------
 
 # Number of Neurons (N)
-N = 1000
+N = 10000
 
 # Extern Input (h) Element of [0, 0.1, 0.01, 0.001, 0.0001]
-h = 0.001
+h = 0.01
 
 # Running Time
-Seconds = 1000
+Seconds = 30
 
 # model one of: "AA", "ER", "SC"
-model = "AA"
+model = "SC"
 
 # Alpha Init: to shorten the burn in phase. In case fo AA with 4 connections, a value arround 0.25 makes sense. For big h it should be lower. For h = 1 it should be 0: Float
 # Sigma Init: Standard deviation for the Alpha initialization: Float
