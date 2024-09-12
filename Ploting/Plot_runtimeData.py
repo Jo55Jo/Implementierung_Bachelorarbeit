@@ -6,7 +6,7 @@ parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 sys.path.append(parent_dir)
 from Functions_Constants_Meters import Constants as cons
 
-with open("/Users/johanneswalka/Documents/Zeug/Anderes Zeugs/Implementierung_Bachelorarbeit/Runtime_Data/RunSubset_100_2.pkl", 'rb') as file:
+with open("/Users/johanneswalka/Documents/Zeug/Anderes Zeugs/Implementierung_Bachelorarbeit/Runtime_Data/RunSubset_10_2.pkl", 'rb') as file:
     data_dict = pickle.load(file)
 # Beispiel für den Zugriff auf die einzelnen Listen
 h = data_dict["h"]
