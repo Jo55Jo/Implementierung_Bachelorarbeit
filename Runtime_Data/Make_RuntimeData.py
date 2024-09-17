@@ -60,18 +60,23 @@ def save_run_data_subset(global_act, Branching_global, Autocorrelation, Average_
         os.makedirs(directory)
     
     # Bestimme die höchste vorhandene Dateinummer und inkrementiere um 1
-    existing_files = [f for f in os.listdir(directory) if f.startswith("Run_") and f.endswith(".pkl")]
+    existing_files = [f for f in os.listdir(directory) if f.endswith(".pkl")]
+    
     if existing_files:
-        highest_number = max([int(f.split('_')[1].split('.')[0]) for f in existing_files])
+        highest_number = max([
+            int(f.split('_')[-1].split('.')[0]) 
+            for f in existing_files 
+            if f.startswith('Run') or f.startswith('RunSubset_') or f.startswith('RunFluctuating_')
+        ])
         file_number = highest_number + 1
     else:
         file_number = 1
     
     # Dateiname bestimmen
-    if cons.Subset == True:
+    if cons.Subset:
         filename = os.path.join(directory, f"RunSubset_{cons.Subset_size}_{file_number}.pkl")
 
-    elif cons.Fluctuating_h == True:
+    elif cons.Fluctuating_h:
         filename = os.path.join(directory, f"RunFluctuating_{file_number}.pkl")
 
     else:
