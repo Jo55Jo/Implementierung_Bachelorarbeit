@@ -1,0 +1,41 @@
+JobId=660974 JobName=name
+   UserId=lfz080(4890) GroupId=levina(4024) MCS_label=N/A
+   Priority=88848 Nice=0 Account=levina QOS=normal
+   JobState=RUNNING Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:00:01 TimeLimit=3-00:00:00 TimeMin=N/A
+   SubmitTime=2024-09-12T21:56:08 EligibleTime=2024-09-12T21:56:08
+   AccrueTime=2024-09-12T21:56:09
+   StartTime=2024-09-12T21:56:09 EndTime=2024-09-15T21:56:09 Deadline=N/A
+   PreemptEligibleTime=2024-09-12T21:57:09 PreemptTime=None
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2024-09-12T21:56:09 Scheduler=Main
+   Partition=2080-galvani AllocNode:Sid=galvani-slurmctl:851866
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=galvani-cn111
+   BatchHost=galvani-cn111
+   NumNodes=1 NumCPUs=8 NumTasks=1 CPUs/Task=8 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=8,mem=40G,node=1,billing=2,gres/gpu=1
+   AllocTRES=cpu=8,mem=40G,node=1,billing=2,gres/gpu=1,gres/gpu:rtx2080ti=1
+   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
+   MinCPUsNode=8 MinMemoryNode=40G MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=OK Contiguous=0 Licenses=(null) Network=(null)
+   Command=/mnt/qb/home/levina/lfz080/Walka/Implementierung_Bachelorarbeit/script.sh
+   WorkDir=/mnt/qb/home/levina/lfz080/Walka/Implementierung_Bachelorarbeit
+   StdErr=/mnt/qb/home/levina/lfz080/Walka/Implementierung_Bachelorarbeit/slurm-660974.out
+   StdIn=/dev/null
+   StdOut=/mnt/qb/home/levina/lfz080/Walka/Implementierung_Bachelorarbeit/slurm-660974.out
+   Power=
+   TresPerNode=gres:gpu:1
+   MailUser=walka37@gmail.com MailType=BEGIN,END,FAIL
+   
+
+Data saved to Runtime_Data/Run_11.pkl
+
+Used Modell:  SC
+Number of Neurons:  1000
+Running Time:  2000
+Input rate h: 0.01
+Target Spiking Rate:  1
+Homeostatic Constant:  1000
+Alpha init:  0.248

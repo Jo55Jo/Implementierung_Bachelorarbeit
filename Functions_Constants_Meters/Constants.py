@@ -2,13 +2,13 @@ import numpy as np
 # -------- Model from Paper -----------
 
 # Number of Neurons (N)
-N = 10000
+N = 1000
 
 # Extern Input (h) Element of [0, 0.1, 0.01, 0.001, 0.0001]
-h = 0.01
+h = 0.001
 
 # Running Time
-Seconds = 30
+Seconds = 2000
 
 # model one of: "AA", "ER", "SC"
 model = "SC"
