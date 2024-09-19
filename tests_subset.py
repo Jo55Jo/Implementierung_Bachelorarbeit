@@ -1,6 +1,6 @@
 import RESEARCH_Subset.Run_Model_Subset as Run_Model_Subset
 import RESEARCH_Subset.ActivityPlot_Subset as act_plot
-import RESEARCH_Subset.Homeostatic_plot as homeo_plot
+import RESEARCH_Subset.Homeostatic_plot_sub as homeo_plot
 from Functions_Constants_Meters import Constants as cons
 import Runtime_Data.Make_RuntimeData as rd
 

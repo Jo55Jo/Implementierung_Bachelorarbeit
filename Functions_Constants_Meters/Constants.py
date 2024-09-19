@@ -8,7 +8,7 @@ N = 1000
 h = 0.001
 
 # Running Time
-Seconds = 2000
+Seconds = 20
 
 # model one of: "AA", "ER", "SC"
 model = "SC"
@@ -16,12 +16,12 @@ model = "SC"
 # Alpha Init: to shorten the burn in phase. In case fo AA with 4 connections, a value arround 0.25 makes sense. For big h it should be lower. For h = 1 it should be 0: Float
 # Sigma Init: Standard deviation for the Alpha initialization: Float
 # Init Activitiy: How many neurons should be active at the start 
-Alpha_init = 0.25
+Alpha_init = 0.23
 SD_init = 0.0
 Init_Activity = 0
 
 # Homeostatic-scaling-constant (tau_hp) = 1 hour = 10**3 is in paper
-tau_hp = 10**3
+tau_hp = 1
 
 
 # ----------- research ---------------
