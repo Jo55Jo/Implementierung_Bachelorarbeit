@@ -40,7 +40,8 @@ def save_run_data(global_act, Branching_global, Autocorrelation, Average_Activit
         "Autocorrelation": Autocorrelation,
         "Average_Activity": Average_Activity,
         "Average_Alpha": Average_Alpha,
-        "Avalanche_Distribution": Avalanche_Distribution
+        "Avalanche_Distribution": Avalanche_Distribution,
+	"pcon": cons.pcon
     }
     
     # Dictionary in die Datei schreiben
