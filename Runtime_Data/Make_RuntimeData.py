@@ -54,7 +54,8 @@ def save_run_data(global_act, Branching_global, Autocorrelation, Average_Activit
 
 
 
-def save_run_data_subset(global_act, Branching_global, Autocorrelation, Average_Activity_sub, Average_Activity_rest, Average_Alpha_sub, Average_Alpha_rest, Avalanche_Distribution):
+def save_run_data_subset(global_act, Branching_global, Autocorrelation, Average_Activity_sub, Average_Activity_rest, Average_Alpha_sub, Average_Alpha_rest, Avalanche_Distribution, Time_Distribution, Avalanche_Distribution_sub, Avalanche_Distribution_rest
+):
     # Ordner erstellen, falls er nicht existiert
     directory = "Runtime_Data"
     if not os.path.exists(directory):
@@ -99,7 +100,10 @@ def save_run_data_subset(global_act, Branching_global, Autocorrelation, Average_
         "Average_Activity_rest": Average_Activity_rest,
         "Average_Alpha_sub": Average_Alpha_sub,
         "Average_Alpha_rest": Average_Alpha_rest,
-        "Avalanche_Distribution": Avalanche_Distribution
+        "Avalanche_Distribution": Avalanche_Distribution,
+        "Time_Distritution": Time_Distribution,
+        "Avalanche_Distribution_sub": Avalanche_Distribution_sub,
+        "Avalanche_Distribution_rest": Avalanche_Distribution_rest
     }
     
     # Dictionary in die Datei schreiben
