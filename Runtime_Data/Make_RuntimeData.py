@@ -17,15 +17,24 @@ def save_run_data(global_act, Branching_global, Autocorrelation, Average_Activit
         file_number = 1
     
     # Dateiname bestimmen
-    if cons.Subset == True:
-        filename = os.path.join(directory, f"RunSubset_{cons.Subset_size}_{file_number}.pkl")
+    if not cons.ExternalAddaption:
+        if cons.Subset == True:
+            filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.h}_{cons.Seconds}_S{cons.Subset_size}_{file_number}.pkl")
 
-    elif cons.Fluctuating_h == True:
-        filename = os.path.join(directory, f"RunFluctuating_{file_number}.pkl")
-
+        elif cons.Fluctuating_h == True:
+            filename = os.path.join(directory, f"RunFluctuating_{file_number}.pkl")
+        
+        else:
+            filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.h}_{cons.Seconds}_{file_number}.pkl")  
     else:
-        filename = os.path.join(directory, f"Run_{file_number}.pkl")
-    
+        if cons.Subset == True:
+            filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.h}_{cons.Seconds}_S{cons.Subset_size}_Addapt{cons.ExternalProb}_{file_number}.pkl")
+
+        elif cons.Fluctuating_h == True:
+            filename = os.path.join(directory, f"RunFluctuating_Addapt{cons.ExternalProb}_{file_number}.pkl")
+       
+        else:
+            filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.h}_{cons.Seconds}_Addapt{cons.ExternalProb}_{file_number}.pkl") 
     # Daten in ein Dictionary speichern
     data_dict = {
         "h":cons.h,
@@ -75,15 +84,24 @@ def save_run_data_subset(global_act, Branching_global, Autocorrelation, Average_
         file_number = 1
     
     # Dateiname bestimmen
-    if cons.Subset:
-        filename = os.path.join(directory, f"RunSubset_{cons.Subset_size}_{file_number}.pkl")
+    if not cons.ExternalAddaption:
+        if cons.Subset == True:
+            filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.h}_{cons.Seconds}_S{cons.Subset_size}_{file_number}.pkl")
 
-    elif cons.Fluctuating_h:
-        filename = os.path.join(directory, f"RunFluctuating_{file_number}.pkl")
-
+        elif cons.Fluctuating_h == True:
+            filename = os.path.join(directory, f"RunFluctuating_{file_number}.pkl")
+        
+        else:
+            filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.h}_{cons.Seconds}_{file_number}.pkl")  
     else:
-        filename = os.path.join(directory, f"Run_{file_number}.pkl")
-    
+        if cons.Subset == True:
+            filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.h}_{cons.Seconds}_S{cons.Subset_size}_Addapt{cons.ExternalProb}_{file_number}.pkl")
+
+        elif cons.Fluctuating_h == True:
+            filename = os.path.join(directory, f"RunFluctuating_Addapt{cons.ExternalProb}_{file_number}.pkl")
+       
+        else:
+            filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.h}_{cons.Seconds}_Addapt{cons.ExternalProb}_{file_number}.pkl")     
     # Daten in ein Dictionary speichern
     data_dict = {
         "h":cons.h,
