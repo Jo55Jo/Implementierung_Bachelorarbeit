@@ -28,12 +28,12 @@ def save_run_data(global_act, Branching_global, Autocorrelation, Average_Activit
                 filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.pcon}_{cons.h}_{cons.Seconds}_{file_number}.pkl")  
         else:
             if cons.Subset == True:
-                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.pcon}_{cons.h}_{cons.Seconds}_S{cons.Subset_size}_Addapt{cons.ExternalProb}_{file_number}.pkl")
+                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.pcon}_{cons.h}_{cons.Seconds}_S{cons.Subset_size}_Addapt{cons.SpontaneousFire}_{file_number}.pkl")
 
             elif cons.Fluctuating_h == True:
-                filename = os.path.join(directory, f"RunFluctuating_Addapt{cons.ExternalProb}_{file_number}.pkl")
+                filename = os.path.join(directory, f"RunFluctuating_Addapt{cons.SpontaneousFire}_{file_number}.pkl")
             else:
-                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.pcon}_{cons.h}_{cons.Seconds}_Addapt{cons.ExternalProb}_{file_number}.pkl") 
+                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.pcon}_{cons.h}_{cons.Seconds}_Addapt{cons.SpontaneousFire}_{file_number}.pkl") 
 
     if cons.model == "AA":
         if not cons.ExternalAddaption:
@@ -46,12 +46,12 @@ def save_run_data(global_act, Branching_global, Autocorrelation, Average_Activit
                 filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.k}_{cons.h}_{cons.Seconds}_{file_number}.pkl")  
         else:
             if cons.Subset == True:
-                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.k}_{cons.h}_{cons.Seconds}_S{cons.Subset_size}_Addapt{cons.ExternalProb}_{file_number}.pkl")
+                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.k}_{cons.h}_{cons.Seconds}_S{cons.Subset_size}_Addapt{cons.SpontaneousFire}_{file_number}.pkl")
 
             elif cons.Fluctuating_h == True:
                 filename = os.path.join(directory, f"RunFluctuating_Addapt{cons.ExternalProb}_{file_number}.pkl")
             else:
-                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.k}_{cons.h}_{cons.Seconds}_Addapt{cons.ExternalProb}_{file_number}.pkl") 
+                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.k}_{cons.h}_{cons.Seconds}_Addapt{cons.SpontaneousFire}_{file_number}.pkl") 
 
 
     if cons.model == "ER_Fixed":
@@ -65,12 +65,12 @@ def save_run_data(global_act, Branching_global, Autocorrelation, Average_Activit
                 filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.Fixed}_{cons.h}_{cons.Seconds}_{file_number}.pkl")  
         else:
             if cons.Subset == True:
-                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.Fixed}_{cons.h}_{cons.Seconds}_S{cons.Subset_size}_Addapt{cons.ExternalProb}_{file_number}.pkl")
+                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.Fixed}_{cons.h}_{cons.Seconds}_S{cons.Subset_size}_Addapt{cons.SpontaneousFire}_{file_number}.pkl")
 
             elif cons.Fluctuating_h == True:
                 filename = os.path.join(directory, f"RunFluctuating_Addapt{cons.ExternalProb}_{file_number}.pkl")
             else:
-                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.Fixed}_{cons.h}_{cons.Seconds}_Addapt{cons.ExternalProb}_{file_number}.pkl") 
+                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.Fixed}_{cons.h}_{cons.Seconds}_Addapt{cons.SpontaneousFire}_{file_number}.pkl") 
 
     if cons.model == "SC_Compiled":
         if not cons.ExternalAddaption:
@@ -83,12 +83,12 @@ def save_run_data(global_act, Branching_global, Autocorrelation, Average_Activit
                 filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.compiled}_{cons.h}_{cons.Seconds}_{file_number}.pkl")  
         else:
             if cons.Subset == True:
-                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.compiled}_{cons.h}_{cons.Seconds}_S{cons.Subset_size}_Addapt{cons.ExternalProb}_{file_number}.pkl")
+                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.compiled}_{cons.h}_{cons.Seconds}_S{cons.Subset_size}_Addapt{cons.SpontaneousFire}_{file_number}.pkl")
 
             elif cons.Fluctuating_h == True:
                 filename = os.path.join(directory, f"RunFluctuating_Addapt{cons.ExternalProb}_{file_number}.pkl")
             else:
-                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.compiled}_{cons.h}_{cons.Seconds}_Addapt{cons.ExternalProb}_{file_number}.pkl") 
+                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.compiled}_{cons.h}_{cons.Seconds}_Addapt{cons.SpontaneousFire}_{file_number}.pkl") 
 
     if cons.model == "SC":
         if not cons.ExternalAddaption:
@@ -101,12 +101,12 @@ def save_run_data(global_act, Branching_global, Autocorrelation, Average_Activit
                 filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.k}_{cons.h}_{cons.Seconds}_{file_number}.pkl")  
         else:
             if cons.Subset == True:
-                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.k}_{cons.h}_{cons.Seconds}_S{cons.Subset_size}_Addapt{cons.ExternalProb}_{file_number}.pkl")
+                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.k}_{cons.h}_{cons.Seconds}_S{cons.Subset_size}_Addapt{cons.SpontaneousFire}_{file_number}.pkl")
 
             elif cons.Fluctuating_h == True:
-                filename = os.path.join(directory, f"RunFluctuating_Addapt{cons.ExternalProb}_{file_number}.pkl")
+                filename = os.path.join(directory, f"RunFluctuating_Addapt{cons.SpontaneousFire}_{file_number}.pkl")
             else:
-                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.k}_{cons.h}_{cons.Seconds}_Addapt{cons.ExternalProb}_{file_number}.pkl") 
+                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.k}_{cons.h}_{cons.Seconds}_Addapt{cons.SpontaneousFire}_{file_number}.pkl") 
     # Daten in ein Dictionary speichern
     data_dict = {
         "h":cons.h,
@@ -167,12 +167,12 @@ def save_run_data_subset(global_act, Branching_global, Autocorrelation, Average_
                 filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.pcon}_{cons.h}_{cons.Seconds}_{file_number}.pkl")  
         else:
             if cons.Subset == True:
-                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.pcon}_{cons.h}_{cons.Seconds}_S{cons.Subset_size}_Addapt{cons.ExternalProb}_{file_number}.pkl")
+                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.pcon}_{cons.h}_{cons.Seconds}_S{cons.Subset_size}_Addapt{cons.SpontaneousFire}_{file_number}.pkl")
 
             elif cons.Fluctuating_h == True:
-                filename = os.path.join(directory, f"RunFluctuating_Addapt{cons.ExternalProb}_{file_number}.pkl")
+                filename = os.path.join(directory, f"RunFluctuating_Addapt{cons.SpontaneousFire}_{file_number}.pkl")
             else:
-                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.pcon}_{cons.h}_{cons.Seconds}_Addapt{cons.ExternalProb}_{file_number}.pkl") 
+                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.pcon}_{cons.h}_{cons.Seconds}_Addapt{cons.SpontaneousFire}_{file_number}.pkl") 
 
     if cons.model == "AA":
         if not cons.ExternalAddaption:
@@ -185,12 +185,12 @@ def save_run_data_subset(global_act, Branching_global, Autocorrelation, Average_
                 filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.k}_{cons.h}_{cons.Seconds}_{file_number}.pkl")  
         else:
             if cons.Subset == True:
-                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.k}_{cons.h}_{cons.Seconds}_S{cons.Subset_size}_Addapt{cons.ExternalProb}_{file_number}.pkl")
+                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.k}_{cons.h}_{cons.Seconds}_S{cons.Subset_size}_Addapt{cons.SpontaneousFire}_{file_number}.pkl")
 
             elif cons.Fluctuating_h == True:
-                filename = os.path.join(directory, f"RunFluctuating_Addapt{cons.ExternalProb}_{file_number}.pkl")
+                filename = os.path.join(directory, f"RunFluctuating_Addapt{cons.SpontaneousFire}_{file_number}.pkl")
             else:
-                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.k}_{cons.h}_{cons.Seconds}_Addapt{cons.ExternalProb}_{file_number}.pkl") 
+                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.k}_{cons.h}_{cons.Seconds}_Addapt{cons.SpontaneousFire}_{file_number}.pkl") 
 
 
     if cons.model == "ER_Fixed":
@@ -204,12 +204,12 @@ def save_run_data_subset(global_act, Branching_global, Autocorrelation, Average_
                 filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.Fixed}_{cons.h}_{cons.Seconds}_{file_number}.pkl")  
         else:
             if cons.Subset == True:
-                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.Fixed}_{cons.h}_{cons.Seconds}_S{cons.Subset_size}_Addapt{cons.ExternalProb}_{file_number}.pkl")
+                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.Fixed}_{cons.h}_{cons.Seconds}_S{cons.Subset_size}_Addapt{cons.SpontaneousFire}_{file_number}.pkl")
 
             elif cons.Fluctuating_h == True:
-                filename = os.path.join(directory, f"RunFluctuating_Addapt{cons.ExternalProb}_{file_number}.pkl")
+                filename = os.path.join(directory, f"RunFluctuating_Addapt{cons.SpontaneousFire}_{file_number}.pkl")
             else:
-                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.Fixed}_{cons.h}_{cons.Seconds}_Addapt{cons.ExternalProb}_{file_number}.pkl") 
+                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.Fixed}_{cons.h}_{cons.Seconds}_Addapt{cons.SpontaneousFire}_{file_number}.pkl") 
 
     if cons.model == "SC_Compiled":
         if not cons.ExternalAddaption:
@@ -222,12 +222,12 @@ def save_run_data_subset(global_act, Branching_global, Autocorrelation, Average_
       	        filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.compiled}_{cons.h}_{cons.Seconds}_{file_number}.pkl")  
         else:
             if cons.Subset == True:
-                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.compiled}_{cons.h}_{cons.Seconds}_S{cons.Subset_size}_Addapt{cons.ExternalProb}_{file_number}.pkl")
+                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.compiled}_{cons.h}_{cons.Seconds}_S{cons.Subset_size}_Addapt{cons.SpontaneousFire}_{file_number}.pkl")
 
             elif cons.Fluctuating_h == True:
-                filename = os.path.join(directory, f"RunFluctuating_Addapt{cons.ExternalProb}_{file_number}.pkl")
+                filename = os.path.join(directory, f"RunFluctuating_Addapt{cons.SpontaneousFire}_{file_number}.pkl")
             else:
-                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.compiled}_{cons.h}_{cons.Seconds}_Addapt{cons.ExternalProb}_{file_number}.pkl") 
+                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.compiled}_{cons.h}_{cons.Seconds}_Addapt{cons.SpontaneousFire}_{file_number}.pkl") 
 
     if cons.model == "SC":
         if not cons.ExternalAddaption:
@@ -240,12 +240,12 @@ def save_run_data_subset(global_act, Branching_global, Autocorrelation, Average_
                 filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.k}_{cons.h}_{cons.Seconds}_{file_number}.pkl")  
         else:
             if cons.Subset == True:
-                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.k}_{cons.h}_{cons.Seconds}_S{cons.Subset_size}_Addapt{cons.ExternalProb}_{file_number}.pkl")
+                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.k}_{cons.h}_{cons.Seconds}_S{cons.Subset_size}_Addapt{cons.SpontaneousFire}_{file_number}.pkl")
 
             elif cons.Fluctuating_h == True:
-                filename = os.path.join(directory, f"RunFluctuating_Addapt{cons.ExternalProb}_{file_number}.pkl")
+                filename = os.path.join(directory, f"RunFluctuating_Addapt{cons.SpontaneousFire}_{file_number}.pkl")
             else:
-                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.k}_{cons.h}_{cons.Seconds}_Addapt{cons.ExternalProb}_{file_number}.pkl") 
+                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.k}_{cons.h}_{cons.Seconds}_Addapt{cons.SpontaneousFire}_{file_number}.pkl") 
 
 
     # Daten in ein Dictionary speichern
