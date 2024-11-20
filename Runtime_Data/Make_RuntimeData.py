@@ -43,7 +43,7 @@ def save_run_data(global_act, Branching_global, Autocorrelation, Average_Activit
             elif cons.Fluctuating_h == True:
                 filename = os.path.join(directory, f"RunFluctuating_{file_number}.pkl")
             else:
-                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.k}_{cons.h}_{cons.Seconds}_{file_number}.pkl")  
+                filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.k}_{cons.h}_tauhp={cons.tau_hp}_{cons.Seconds}_{file_number}.pkl")  
         else:
             if cons.Subset == True:
                 filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.k}_{cons.h}_{cons.Seconds}_S{cons.Subset_size}_Addapt{cons.SpontaneousFire}_{file_number}.pkl")
