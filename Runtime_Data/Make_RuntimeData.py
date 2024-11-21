@@ -15,8 +15,16 @@ def save_run_data(global_act, Branching_global, Autocorrelation, Average_Activit
         file_number = highest_number + 1
     else:
         file_number = 1
+
+
     
     # Dateiname bestimmen
+    if cons.model == "ER_Mountain":
+        filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.Fixed}_{cons.h}_{cons.Seconds}_MOUNTAIN_{file_number}.pkl")
+
+    if cons.model == "HM":
+        filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.level}_{cons.h}_{cons.Seconds}_HIERARCHICAL_{file_number}.pkl")
+
     if cons.model == "ER":
         if not cons.ExternalAddaption:
             if cons.Subset == True:
