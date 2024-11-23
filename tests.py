@@ -4,8 +4,8 @@ import Runtime_Data.Make_RuntimeData as rd
 import Run_Model_BurnIn as BurnIn
 
 # if its tests, cons.Subset should be false
-#cons.Subset = False
-#cons.Fluctuating_h = False
+cons.Subset = False
+cons.Fluctuating_h = False
 print("auch das klappt du dumme nuss")
 # Running the model, please set variables in Constants.py
 
