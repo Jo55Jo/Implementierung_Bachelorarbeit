@@ -13,6 +13,7 @@ FIELD_SIZE = int(5000*math.sqrt(cons.N/10000))
 # int (N), int (dentritic radii = 20müm in paper == 20) -> NxN matrix (connections)
 # X_sorted list of somata, the list of axons, the dentritic radii and the number of neurons are given into the Function that draws the connections into the connection matrix. 
 
+
 def Spacial_Clustered(N: int, dentritic_radius = 20):
     # initialize the connection array with empty lists
     Connection_arr = [list() for _ in range(N)]

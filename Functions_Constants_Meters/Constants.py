@@ -1,41 +1,56 @@
 import numpy as np
-# -------- Model from Paper -----------
 
+# -------- Model from Paper -----------
+print("bis hier geht1", flush=True)
+asdf
 # Number of Neurons (N)
-N = 1000
+N = 10000
 
 # Extern Input (h) Element of [0, 0.1, 0.01, 0.001, 0.0001]
-h = 0.001
+h = 10**(-1)
 
 # Running Time
-Seconds = 20
+Seconds = 10
+Burn_In = 0
 
-# model one of: "AA", "ER", "SC"
-model = "SC"
+# model one of: "AA", "ER", "SC", "HM", "ER_Mountain", "ER_Fixed", SC_Compiled
+model = "ER"
 
+# Number of connections for AA
+k = 75
+# Number of Connections for ER
+Fixed = 75
+# probability for ER
+pcon = 0.0075
+# Compiled is the compiled model that is taken 
+compiled = 10
+# level für hm
+level = 13
 # Alpha Init: to shorten the burn in phase. In case fo AA with 4 connections, a value arround 0.25 makes sense. For big h it should be lower. For h = 1 it should be 0: Float
 # Sigma Init: Standard deviation for the Alpha initialization: Float
 # Init Activitiy: How many neurons should be active at the start 
-Alpha_init = 0.23
+Alpha_init = 0.05
 SD_init = 0.0
 Init_Activity = 0
 
 # Homeostatic-scaling-constant (tau_hp) = 1 hour = 10**3 is in paper
-tau_hp = 1
+tau_hp = 1000
 
-
+print("bis hier Geht2")
 # ----------- research ---------------
 
+Homo = False
 
+ExternalAddaption = False
 # <<<<<<Subset>>>>>>>
 # Size of the subset 
 Subset = False
-Subset_size = 100
+Subset_size = 500
 
 
 #<<<<<<log_normal r_target distribution >>>>>>>>>>
 log_r = False
-r_log_target = np.random.lognormal(mean=np.log(1), sigma=0.2, size=N)
+log_target = np.random.lognormal(mean=np.log(1), sigma=0.2, size=N)
 
 #<<<<<< fluctuating h >>>>>>>
 Fluctuating_h = False
@@ -51,5 +66,4 @@ delta_t = 0.001
 
 # timestep for Activity Tracker
 delta_t_act = 0.004
-
 

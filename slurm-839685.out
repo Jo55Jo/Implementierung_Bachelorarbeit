@@ -1,0 +1,43 @@
+JobId=839685 JobName=name
+   UserId=lfz080(4890) GroupId=levina(4024) MCS_label=N/A
+   Priority=74985 Nice=0 Account=levina QOS=normal
+   JobState=RUNNING Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:00:01 TimeLimit=3-00:00:00 TimeMin=N/A
+   SubmitTime=2024-11-23T14:58:41 EligibleTime=2024-11-23T14:58:41
+   AccrueTime=2024-11-23T14:58:41
+   StartTime=2024-11-23T14:58:41 EndTime=2024-11-26T14:58:41 Deadline=N/A
+   PreemptEligibleTime=2024-11-23T14:59:41 PreemptTime=None
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2024-11-23T14:58:41 Scheduler=Main
+   Partition=2080-galvani AllocNode:Sid=galvani-slurmctl:841820
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=galvani-cn127
+   BatchHost=galvani-cn127
+   NumNodes=1 NumCPUs=8 NumTasks=1 CPUs/Task=8 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=8,mem=40G,node=1,billing=2,gres/gpu=1
+   AllocTRES=cpu=8,mem=40G,node=1,billing=2,gres/gpu=1,gres/gpu:rtx2080ti=1
+   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
+   MinCPUsNode=8 MinMemoryNode=40G MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=OK Contiguous=0 Licenses=(null) Network=(null)
+   Command=/mnt/qb/home/levina/lfz080/Walka/Implementierung_Bachelorarbeit/script.sh
+   WorkDir=/mnt/qb/home/levina/lfz080/Walka/Implementierung_Bachelorarbeit
+   StdErr=/mnt/qb/home/levina/lfz080/Walka/Implementierung_Bachelorarbeit/slurm-839685.out
+   StdIn=/dev/null
+   StdOut=/mnt/qb/home/levina/lfz080/Walka/Implementierung_Bachelorarbeit/slurm-839685.out
+   Power=
+   TresPerNode=gres:gpu:1
+   MailUser=walka37@gmail.com MailType=BEGIN,END,FAIL
+   
+
+bis hier geht1
+Traceback (most recent call last):
+  File "/home/levina/lfz080/Walka/Implementierung_Bachelorarbeit/tests.py", line 1, in <module>
+    from Ploting import ActivityPlot as act_plot
+  File "/home/levina/lfz080/Walka/Implementierung_Bachelorarbeit/Ploting/ActivityPlot.py", line 3, in <module>
+    from Functions_Constants_Meters import Constants as cons
+  File "/home/levina/lfz080/Walka/Implementierung_Bachelorarbeit/Functions_Constants_Meters/Constants.py", line 5, in <module>
+    kjhlkj
+NameError: name 'kjhlkj' is not defined
+srun: error: galvani-cn127: task 0: Exited with exit code 1
+srun: Terminating StepId=839685.0

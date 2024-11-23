@@ -9,7 +9,6 @@ import os
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 sys.path.append(parent_dir)
 from Functions_Constants_Meters import Constants as cons
-
 # Funktion zum Berechnen des Abstands zwischen zwei Punkten
 def calculate_distance(x1, y1, x2, y2):
     return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)

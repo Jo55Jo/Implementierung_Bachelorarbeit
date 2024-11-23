@@ -1,27 +1,28 @@
 import numpy as np
-import Functions_Constants_Meters.Constants as cons
+#import Functions_Constants_Meters.Constants as cons
 
 #----------------------------------------
 # Necessary Constants
-Timestep = cons.delta_t
-Timeconstant_hp = cons.tau_hp
+#Timestep = cons.delta_t
 #----------------------------------------
 
 # int, ndarray -> ndarray (updated state_values)
 # Sets the State_value to active with a certain probability that depends on the external-input-rate h and the timeconstant tau
-def External_Input(N: int, state_value: list, h: float, delta_t=Timestep):
+def External_Input(N: int, state_value: list, h: float, delta_t):
     # probability for external spike to activate Neuron
     p = 1 - np.exp(-h * delta_t)
 
     # calculate Bernulli, number of trials per Bernouli experiment is 1, as only one external Input (represents summed input)
     Activations = np.random.binomial(1, p, size=N)
 
+    new_state_value = state_value.copy()  # or initialize as an empty list
+
     # actualize the State_variable
     for i in range(N):
         if Activations[i] == 1:
-            state_value.append(i)
+            new_state_value.append(i)
 
-    return state_value
+    return new_state_value
 
 
 
@@ -51,14 +52,14 @@ def Spike_Propagation(Connection_arr: np.ndarray, state_value_new: list, state_v
 
 #ndarray, ndarray -> nd.array (update of homeostatic-scaling-values)
 #takes the array of state-value and homeostatic-scaling-factor and returns the updated homeostatic-scaling-factor
-def Update_Alpha(state_value: list, Alpha: np.ndarray):
+def Update_Alpha(state_value: list, Alpha: np.ndarray, tau_hp, delta_t, log_r, log_target, r_target):
     # For every neuron ist homeostatic-scaling-factor is adjusted
     for i, Alpha_i in enumerate(Alpha):
         #calculate Delta_Alpha[i]
         if i in state_value:
-            Alpha_updated = Alpha_i + Delta_Alpha(1, i)
+            Alpha_updated = Alpha_i + Delta_Alpha(1, i, tau_hp, delta_t, log_r, log_target, r_target)
         else:
-            Alpha_updated = Alpha_i + Delta_Alpha(0, i)
+            Alpha_updated = Alpha_i + Delta_Alpha(0, i, tau_hp, delta_t, log_r, log_target, r_target)
 
         #update Apha[i]
         Alpha[i] = Alpha_updated
@@ -74,10 +75,10 @@ def Update_Alpha(state_value: list, Alpha: np.ndarray):
 #takes statevalue for individual neuron and returns the update value for homeostatic scaling factor
 #int (0 or 1) -> float
 #takes statevalue for individual neuron and returns the update value for homeostatic scaling factor
-def Delta_Alpha(state_value: int, neuron: int, delta_t = Timestep, tau_hp = Timeconstant_hp):
-    if not cons.log_r:
-        alpha = (delta_t*cons.r_target-state_value)*(delta_t/tau_hp)
-    else:
-        alpha = (delta_t*cons.r_log_target[neuron]-state_value)*(delta_t/tau_hp)
-    return alpha
 
+def Delta_Alpha(state_value: int, neuron: int, tau_hp, delta_t, log_r, log_target, r_target):
+    if not log_r:
+        alpha = (delta_t*r_target-state_value)*(delta_t/tau_hp)
+    else:
+        alpha = (delta_t*log_target[neuron]-state_value)*(delta_t/tau_hp)
+    return alpha

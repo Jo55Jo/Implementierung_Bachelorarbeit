@@ -3,14 +3,15 @@ import RESEARCH_Subset.ActivityPlot_Subset as act_plot
 import RESEARCH_Subset.Homeostatic_plot_sub as homeo_plot
 from Functions_Constants_Meters import Constants as cons
 import Runtime_Data.Make_RuntimeData as rd
-
+import time
 # if its tests, cons.Subset should be True, fluctuating h false
 cons.Subset = True
 cons.Fluctuating_h = False
-
+t1 = time.time()
 # Running the model, please set variables in Constants.py
-Global_act, Branching_global, Autocorrelation, Average_Activity_sub, Average_Activity_rest, Average_Alpha_sub, Average_Alpha_rest, Avalanche_Distribution = Run_Model_Subset.Run_Model_subset("AA", cons.N, cons.Seconds, h=cons.h)
-
+Global_act, Branching_global, Autocorrelation, Average_Activity_sub, Average_Activity_rest, Average_Alpha_sub, Average_Alpha_rest, Avalanche_Distribution, Time_Distribution, Avalanche_Distribution_sub, Avalanche_Distribution_rest = Run_Model_Subset.Run_Model_subset("AA", cons.N, cons.Seconds, h=cons.h)
+t2 = time.time()
+print("Es hat " + int(t1-t2) +  " Sekunden gebraucht")
 
 
 # getting the title h and the plotting color 
@@ -39,22 +40,8 @@ else:
     title_h = r'$10^{-6}$'
     color = "brown"
 
-
-# plot the average Activity
-act_plot.create_activityplot_subset(Average_Activity_sub, Average_Activity_rest, color, title_h)
-
-# plot the hell out of that homeostatic value
-homeo_plot.plot_homeostatic_subset(Average_Alpha_sub, Average_Alpha_rest, color, title_h)
-
-# you have to import this later because of the subconfigurations of the plots
-from Ploting import AvalanchePlot as ava_plot
-ava_plot.plot_log_histogram(Avalanche_Distribution, r'$\frac{h}{r^*} = $' + title_h, color)
-
-
-
-
 # Save some data from the run in the Runtime_Data folder
-rd.save_run_data_subset(Global_act, Branching_global, Autocorrelation, Average_Activity_sub, Average_Activity_rest, Average_Alpha_sub, Average_Alpha_rest, Avalanche_Distribution)
+rd.save_run_data_subset(Global_act, Branching_global, Autocorrelation, Average_Activity_sub, Average_Activity_rest, Average_Alpha_sub, Average_Alpha_rest, Avalanche_Distribution, Time_Distribution, Avalanche_Distribution_sub, Avalanche_Distribution_rest)
 
 # Print some statistics at the end
 print("")

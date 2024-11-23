@@ -1,0 +1,51 @@
+JobId=839639 JobName=name
+   UserId=lfz080(4890) GroupId=levina(4024) MCS_label=N/A
+   Priority=74985 Nice=0 Account=levina QOS=normal
+   JobState=RUNNING Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:00:01 TimeLimit=3-00:00:00 TimeMin=N/A
+   SubmitTime=2024-11-23T14:20:49 EligibleTime=2024-11-23T14:20:49
+   AccrueTime=2024-11-23T14:20:49
+   StartTime=2024-11-23T14:20:49 EndTime=2024-11-26T14:20:49 Deadline=N/A
+   PreemptEligibleTime=2024-11-23T14:21:49 PreemptTime=None
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2024-11-23T14:20:49 Scheduler=Main
+   Partition=2080-galvani AllocNode:Sid=galvani-slurmctl:841820
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=galvani-cn104
+   BatchHost=galvani-cn104
+   NumNodes=1 NumCPUs=8 NumTasks=1 CPUs/Task=8 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=8,mem=40G,node=1,billing=2,gres/gpu=1
+   AllocTRES=cpu=8,mem=40G,node=1,billing=2,gres/gpu=1,gres/gpu:rtx2080ti=1
+   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
+   MinCPUsNode=8 MinMemoryNode=40G MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=OK Contiguous=0 Licenses=(null) Network=(null)
+   Command=/mnt/qb/home/levina/lfz080/Walka/Implementierung_Bachelorarbeit/script.sh
+   WorkDir=/mnt/qb/home/levina/lfz080/Walka/Implementierung_Bachelorarbeit
+   StdErr=/mnt/qb/home/levina/lfz080/Walka/Implementierung_Bachelorarbeit/slurm-839639.out
+   StdIn=/dev/null
+   StdOut=/mnt/qb/home/levina/lfz080/Walka/Implementierung_Bachelorarbeit/slurm-839639.out
+   Power=
+   TresPerNode=gres:gpu:1
+   MailUser=walka37@gmail.com MailType=BEGIN,END,FAIL
+   
+
+bis hier geht1
+bis hier Geht2
+lalal
+auch das klappt du dumme nuss
+In der Funktion wird es ausgeführt....
+Traceback (most recent call last):
+  File "/home/levina/lfz080/Walka/Implementierung_Bachelorarbeit/tests.py", line 15, in <module>
+    run()
+  File "/home/levina/lfz080/Walka/Implementierung_Bachelorarbeit/tests.py", line 14, in run
+    Global_act, Branching_global, Autocorrelation, Average_Activity, Average_Alpha, Avalanche_Distribution = BurnIn.Run_Model(cons.model, cons.N, cons.Seconds, h=cons.h)
+  File "/home/levina/lfz080/Walka/Implementierung_Bachelorarbeit/Run_Model_BurnIn.py", line 80, in Run_Model
+    Alpha = funs.Update_Alpha(state_value_new, Alpha, tau_hp, cons.delta_t)
+  File "/home/levina/lfz080/Walka/Implementierung_Bachelorarbeit/Functions_Constants_Meters/Functions.py", line 62, in Update_Alpha
+    Alpha_updated = Alpha_i + Delta_Alpha(0, i, tau_hp, delta_t)
+  File "/home/levina/lfz080/Walka/Implementierung_Bachelorarbeit/Functions_Constants_Meters/Functions.py", line 79, in Delta_Alpha
+    if not cons.log_r:
+NameError: name 'cons' is not defined
+srun: error: galvani-cn104: task 0: Exited with exit code 1
+srun: Terminating StepId=839639.0

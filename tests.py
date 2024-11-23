@@ -1,16 +1,17 @@
-import Run_Model
 from Ploting import ActivityPlot as act_plot
 from Functions_Constants_Meters import Constants as cons
 import Runtime_Data.Make_RuntimeData as rd
+import Run_Model_BurnIn as BurnIn
 
 # if its tests, cons.Subset should be false
-cons.Subset = False
-cons.Fluctuating_h = False
-
+#cons.Subset = False
+#cons.Fluctuating_h = False
+print("auch das klappt du dumme nuss")
 # Running the model, please set variables in Constants.py
-Global_act, Branching_global, Autocorrelation, Average_Activity, Average_Alpha, Avalanche_Distribution = Run_Model.Run_Model(cons.model, cons.N, cons.Seconds, h=cons.h)
 
 
+from Functions_Constants_Meters import Constants as cons
+Global_act, Branching_global, Autocorrelation, Average_Activity, Average_Alpha, Avalanche_Distribution = BurnIn.Run_Model(cons.model, cons.N, cons.Seconds, h=cons.h)
 
 # getting the title h and the plotting color 
 if cons.h == 10:
@@ -39,13 +40,6 @@ else:
     color = "brown"
 
 
-# plot the average Activity
-act_plot.create_activityplot(Average_Activity, color, title_h)
-
-# you have to import this later because of the subconfigurations of the plots
-from Ploting import AvalanchePlot as ava_plot
-ava_plot.plot_log_histogram(Avalanche_Distribution, r'$\frac{h}{r^*} = $' + title_h, color)
-
 # Save some data from the run in the Runtime_Data folder
 rd.save_run_data(Global_act, Branching_global, Autocorrelation, Average_Activity, Average_Alpha, Avalanche_Distribution)
 
@@ -58,6 +52,8 @@ print("Input rate h:", cons.h)
 print("Target Spiking Rate: ", cons.r_target)
 print("Homeostatic Constant: ", cons.tau_hp)
 print("Alpha init: ", cons.Alpha_init)
+
+
 #print("Time Step Size: ", cons.delta_t)
 #print("last branching parameter: ", Branching_global[-1])
 #print("last autocorrelation time: ", Autocorrelation[-1])

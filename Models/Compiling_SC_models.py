@@ -23,7 +23,7 @@ print("Anzahl der Elemente in der Datenbank:", row_count)
 # the array name to be joined:
 for i in range(9):
     SC_name = "SC_10000_" + str(i+1)
-    Spacial_clust = SC.Spacial_Clustered(10000)
+    #Spacial_clust = SC.Spacial_Clustered(10000)
 
     array_pickle = pickle.dumps(Spacial_clust)
 
@@ -35,3 +35,4 @@ for i in range(9):
 
 # close connection
 conn.close()
+
