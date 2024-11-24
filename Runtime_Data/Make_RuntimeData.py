@@ -163,6 +163,12 @@ def save_run_data_subset(global_act, Branching_global, Autocorrelation, Average_
         file_number = 1
     
     # Dateiname bestimmen
+    if cons.model == "ER_Mountain":
+        filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.Fixed}_{cons.h}_{cons.Seconds}_MOUNTAIN_{cons.Subset_size}_{file_number}.pkl")
+
+    if cons.model == "HM":
+        filename = os.path.join(directory, f"{cons.model}{cons.N}_{cons.level}_{cons.h}_{cons.Seconds}_HIERARCHICAL_{cons.Subset_size}_{file_number}.pkl")
+
     if cons.model == "ER":
         if not cons.ExternalAddaption:
             if cons.Subset == True:
