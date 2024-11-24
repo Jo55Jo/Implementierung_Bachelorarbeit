@@ -136,7 +136,7 @@ def Run_Model_subset(model: str, N: int, Seconds: int, h: float, compiled=10):
         # Collect activity in lists for later plotting
         Global_act.append(glob_t)
 
-
+        '''
         #Do metering of Branching parameter and autocorrelation
         if i % 100 == 0:
 
@@ -152,7 +152,7 @@ def Run_Model_subset(model: str, N: int, Seconds: int, h: float, compiled=10):
             print("Global Activity Now: ", glob_t)
             print("Branching Parameter:", branch_glob)
             print("Autocorrelation: ", autocorr_t)
-        '''
+
 
         # If there is zero activity but the tracker is not 0, then the avalanche is over so return to 0 and
         if i>=cons.Burn_In*1000:

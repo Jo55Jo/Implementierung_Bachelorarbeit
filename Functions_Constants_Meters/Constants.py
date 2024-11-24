@@ -5,14 +5,14 @@ import numpy as np
 N = 10000
 
 # Extern Input (h) Element of [0, 0.1, 0.01, 0.001, 0.0001]
-h = 10**(-1)
+h = 10**(-2.5)
 
 # Running Time
 Seconds = 1501
 Burn_In = 500
 
 # model one of: "AA", "ER", "SC", "HM", "ER_Mountain", "ER_Fixed", SC_Compiled, "Erdos_Compiled"
-model = "Erdos_Compiled"
+model = "SC_Compiled"
 # Number of connections for AA
 k = 75
 # Number of Connections for ER
