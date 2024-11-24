@@ -2,18 +2,21 @@ from Ploting import ActivityPlot as act_plot
 from Functions_Constants_Meters import Constants as cons
 import Runtime_Data.Make_RuntimeData as rd
 import Run_Model_BurnIn as BurnIn
-
+from Functions_Constants_Meters import Constants as cons
+import time
 # if its tests, cons.Subset should be false
 cons.Subset = False
 cons.Fluctuating_h = False
 print("auch das klappt du dumme nuss")
 # Running the model, please set variables in Constants.py
 
-
-from Functions_Constants_Meters import Constants as cons
+t1 = time.time()
 Global_act, Branching_global, Autocorrelation, Average_Activity, Average_Alpha, Avalanche_Distribution = BurnIn.Run_Model(cons.model, cons.N, cons.Seconds, h=cons.h)
+t2 = time.time()
+print("total used time: ", int(t2-t1))
 
-# getting the title h and the plotting color 
+
+# getting the title h and the plotting color
 if cons.h == 10:
     title_h = r'$10^1$'
     color = '#FF1493'

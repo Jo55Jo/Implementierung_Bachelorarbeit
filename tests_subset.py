@@ -9,9 +9,9 @@ cons.Subset = True
 cons.Fluctuating_h = False
 t1 = time.time()
 # Running the model, please set variables in Constants.py
-Global_act, Branching_global, Autocorrelation, Average_Activity_sub, Average_Activity_rest, Average_Alpha_sub, Average_Alpha_rest, Avalanche_Distribution, Time_Distribution, Avalanche_Distribution_sub, Avalanche_Distribution_rest = Run_Model_Subset.Run_Model_subset("AA", cons.N, cons.Seconds, h=cons.h)
+Global_act, Branching_global, Autocorrelation, Average_Activity_sub, Average_Activity_rest, Average_Alpha_sub, Average_Alpha_rest, Avalanche_Distribution, Time_Distribution, Avalanche_Distribution_sub, Avalanche_Distribution_rest = Run_Model_Subset.Run_Model_subset(cons.model, cons.N, cons.Seconds, cons.h, cons.compiled)
 t2 = time.time()
-print("Es hat " + int(t1-t2) +  " Sekunden gebraucht")
+print("Es hat ", int(t2-t1) ," Sekunden gebraucht")
 
 
 # getting the title h and the plotting color 

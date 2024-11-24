@@ -3,6 +3,8 @@ import math
 from Models import Annealed_Average as AA
 from Models import Erdos_Network as ER
 from Models import Spacial_Clustered as SC
+from Models import Hierarchical_Model as HM
+
 import RESEARCH_Subset.Subset as research
 from Functions_Constants_Meters import Functions as funs
 from Functions_Constants_Meters import Constants as cons
@@ -18,7 +20,7 @@ import pickle
 # Branching_Parameters --> np.ndarray, int; returns list of individual branchingP  and int = global_mean_of_branchingP
 # Autocorrelation_tiem --> int; returns int giving the autocorrelation time
 # runs the whole model. Individual Parameters for models or functions have to be adjusted in the according files
-def Run_Model_subset(model: str, N: int, Seconds: int, h: float):
+def Run_Model_subset(model: str, N: int, Seconds: int, h: float, compiled=10):
     # initialize state_value_old, Alphaa (homostatic array)
     state_value_old = []
     # initializing Alpha. As k = 4 in the models we use 0.25 for h≠1 (h=1 we use 0 so that it doesnt take so long until its giving resonable results)
@@ -90,13 +92,12 @@ def Run_Model_subset(model: str, N: int, Seconds: int, h: float):
             Connection_arr = np.array([np.random.choice([x for x in range(N) if x != i], size=cons.Fixed, replace=False).tolist() for i in range(N)])
 
 
-
         # nacheinander Funktionen ausführen
         state_value_new = research.External_Input_Subset(N, state_value_new, h)
         state_value_new = funs.Spike_Propagation(Connection_arr, state_value_new, state_value_old, Alpha)
 
         #! The homeostatic scaling is updated with the actual state_value_new. is that correct?
-        Alpha = funs.Update_Alpha(state_value_new, Alpha, tau_hp)
+        Alpha = funs.Update_Alpha(state_value_new, Alpha, tau_hp, cons.delta_t, cons.log_r, cons.log_target, cons.r_target)
 
         # meter global and subpopulation activity
         glob_t = len(state_value_new)
@@ -214,17 +215,16 @@ def Run_Model_subset(model: str, N: int, Seconds: int, h: float):
                     len_con = [len(i) for i in Connection_arr]
                     individual_branch = Alpha*len_con
                     Global_act.append(individual_branch)
-        if (i % 100000 == 0) and (model != "AA"):
+        if (i % 10000 == 0) and (model != "AA"):
             len_con = [len(i) for i in Connection_arr]
             individual_branch = Alpha*len_con
             Global_act.append(individual_branch)
-
+            #print(Global_act[-1])
         # state_value_new becomes the new state_value_old
         state_value_old = state_value_new
         state_value_new = []
 
-
-        if (i % 1000 == 0):
+        if (i % 100000 == 0):
             print(str(i/1000) + " Seconds of " + str(Seconds))
 
     return Global_act, Branching_global, Autocorrelation, Average_Activity_sub, Average_Activity_rest, Average_Alpha_sub, Average_Alpha_rest, Avalanche_Distribution, Time_Distribution, Avalanche_Distribution_sub, Avalanche_Distribution_rest
@@ -239,7 +239,11 @@ def Get_connection_array(N, model: str):
         Connection_array = ER.Erdos_Inhomogen(N, cons.s1, cons.p1i, cons.p1e, cons.p2i, cons.p2e)
     elif model == "SC":
         Connection_array = SC.Spacial_Clustered(N)
-
-
+    elif model == "ER_Mountain":
+        Connection_array = ER.Erdos_Mountain(cons.N, cons.Fixed)
+    elif model == "HM":
+        Connection_array = HM.HierarchicalModel(level=cons.level)
+    elif model == "Erdos_Compiled":
+        Connection_array = ER.Erdos_Compiled(N, cons.compiled)
     return Connection_array
 

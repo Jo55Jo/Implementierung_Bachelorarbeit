@@ -8,6 +8,7 @@ from Functions_Constants_Meters import Functions as funs
 from Functions_Constants_Meters import Constants as cons
 from Functions_Constants_Meters import Meters as meters
 import sqlite3
+import time
 import pickle
 print("lalal")
 # String (modell), int (size), int(iterations), float (input is one of: [0, 0.1, 0.01, 0.001, 0.0001]) -> , list (Population activity), list of np.ndarrays (individual activity), list (Branching Paramete$
@@ -19,7 +20,6 @@ print("lalal")
 # runs the whole model. Individual Parameters for models or functions have to be adjusted in the according files
 
 def Run_Model(model: str, N: int, Seconds: int, h: float, compiled = 8):
-
     print("In der Funktion wird es ausgeführt....")
     # initialize state_value_old, Alphaa (homostatic array)
     state_value_old = []
@@ -109,7 +109,6 @@ def Run_Model(model: str, N: int, Seconds: int, h: float, compiled = 8):
             print("Iteration: ", i)
         '''
         #Do metering of Branching parameter and autocorrelation
-        '''
         if i % 4 == 0:
 
             branch_glob = meters.Branching_Parameters(N, Connection_arr, Alpha, model, cons.k)
@@ -125,7 +124,6 @@ def Run_Model(model: str, N: int, Seconds: int, h: float, compiled = 8):
             #print("Branching Parameter:", branch_glob)
             #print("Autocorrelation: ", autocorr_t)
             #print("Average Alpha: ", average_alpha_t
-        '''
         # If there is zero activity but the tracker is not 0, then the avalanche is over so return to 0 and 
         if i>=cons.Burn_In*1000:
             if (glob_t == 0) and (Avalanche_Tracker != 0):
@@ -194,7 +192,10 @@ def Get_connection_array(N, model: str):
         Connection_array = SC.Spacial_Clustered(N)
     elif model == "HM":
         Connection_array = HM.HierarchicalModel(cons.level)
-
+    elif model == "ER_Mountain":
+        Connection_array = ER.Erdos_Mountain(cons.N, cons.Fixed)
+    elif model == "Erdos_Compiled":
+        Connection_array = ER.Erdos_Compiled(N, cons.compiled)
 
     return Connection_array
 

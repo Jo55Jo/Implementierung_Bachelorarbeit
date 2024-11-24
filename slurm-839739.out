@@ -1,0 +1,144 @@
+JobId=839739 JobName=name
+   UserId=lfz080(4890) GroupId=levina(4024) MCS_label=N/A
+   Priority=74985 Nice=0 Account=levina QOS=normal
+   JobState=RUNNING Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:00:01 TimeLimit=3-00:00:00 TimeMin=N/A
+   SubmitTime=2024-11-23T16:03:13 EligibleTime=2024-11-23T16:03:13
+   AccrueTime=2024-11-23T16:03:13
+   StartTime=2024-11-23T16:03:13 EndTime=2024-11-26T16:03:13 Deadline=N/A
+   PreemptEligibleTime=2024-11-23T16:04:13 PreemptTime=None
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2024-11-23T16:03:13 Scheduler=Main
+   Partition=2080-galvani AllocNode:Sid=galvani-slurmctl:1429436
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=galvani-cn127
+   BatchHost=galvani-cn127
+   NumNodes=1 NumCPUs=8 NumTasks=1 CPUs/Task=8 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=8,mem=40G,node=1,billing=2,gres/gpu=1
+   AllocTRES=cpu=8,mem=40G,node=1,billing=2,gres/gpu=1,gres/gpu:rtx2080ti=1
+   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
+   MinCPUsNode=8 MinMemoryNode=40G MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=OK Contiguous=0 Licenses=(null) Network=(null)
+   Command=/mnt/qb/home/levina/lfz080/Walka/Implementierung_Bachelorarbeit/script.sh
+   WorkDir=/mnt/qb/home/levina/lfz080/Walka/Implementierung_Bachelorarbeit
+   StdErr=/mnt/qb/home/levina/lfz080/Walka/Implementierung_Bachelorarbeit/slurm-839739.out
+   StdIn=/dev/null
+   StdOut=/mnt/qb/home/levina/lfz080/Walka/Implementierung_Bachelorarbeit/slurm-839739.out
+   Power=
+   TresPerNode=gres:gpu:1
+   MailUser=walka37@gmail.com MailType=BEGIN,END,FAIL
+   
+
+lalal
+auch das klappt du dumme nuss
+In der Funktion wird es ausgeführt....
+0.0 Seconds of 1
+0.01 Seconds of 1
+0.02 Seconds of 1
+0.03 Seconds of 1
+0.04 Seconds of 1
+0.05 Seconds of 1
+0.06 Seconds of 1
+0.07 Seconds of 1
+0.08 Seconds of 1
+0.09 Seconds of 1
+0.1 Seconds of 1
+0.11 Seconds of 1
+0.12 Seconds of 1
+0.13 Seconds of 1
+0.14 Seconds of 1
+0.15 Seconds of 1
+0.16 Seconds of 1
+0.17 Seconds of 1
+0.18 Seconds of 1
+0.19 Seconds of 1
+0.2 Seconds of 1
+0.21 Seconds of 1
+0.22 Seconds of 1
+0.23 Seconds of 1
+0.24 Seconds of 1
+0.25 Seconds of 1
+0.26 Seconds of 1
+0.27 Seconds of 1
+0.28 Seconds of 1
+0.29 Seconds of 1
+0.3 Seconds of 1
+0.31 Seconds of 1
+0.32 Seconds of 1
+0.33 Seconds of 1
+0.34 Seconds of 1
+0.35 Seconds of 1
+0.36 Seconds of 1
+0.37 Seconds of 1
+0.38 Seconds of 1
+0.39 Seconds of 1
+0.4 Seconds of 1
+0.41 Seconds of 1
+0.42 Seconds of 1
+0.43 Seconds of 1
+0.44 Seconds of 1
+0.45 Seconds of 1
+0.46 Seconds of 1
+0.47 Seconds of 1
+0.48 Seconds of 1
+0.49 Seconds of 1
+0.5 Seconds of 1
+0.51 Seconds of 1
+0.52 Seconds of 1
+0.53 Seconds of 1
+0.54 Seconds of 1
+0.55 Seconds of 1
+0.56 Seconds of 1
+0.57 Seconds of 1
+0.58 Seconds of 1
+0.59 Seconds of 1
+0.6 Seconds of 1
+0.61 Seconds of 1
+0.62 Seconds of 1
+0.63 Seconds of 1
+0.64 Seconds of 1
+0.65 Seconds of 1
+0.66 Seconds of 1
+0.67 Seconds of 1
+0.68 Seconds of 1
+0.69 Seconds of 1
+0.7 Seconds of 1
+0.71 Seconds of 1
+0.72 Seconds of 1
+0.73 Seconds of 1
+0.74 Seconds of 1
+0.75 Seconds of 1
+0.76 Seconds of 1
+0.77 Seconds of 1
+0.78 Seconds of 1
+0.79 Seconds of 1
+0.8 Seconds of 1
+0.81 Seconds of 1
+0.82 Seconds of 1
+0.83 Seconds of 1
+0.84 Seconds of 1
+0.85 Seconds of 1
+0.86 Seconds of 1
+0.87 Seconds of 1
+0.88 Seconds of 1
+0.89 Seconds of 1
+0.9 Seconds of 1
+0.91 Seconds of 1
+0.92 Seconds of 1
+0.93 Seconds of 1
+0.94 Seconds of 1
+0.95 Seconds of 1
+0.96 Seconds of 1
+0.97 Seconds of 1
+0.98 Seconds of 1
+0.99 Seconds of 1
+Data saved to Runtime_Data/AA100_4_0.1_1_75.pkl
+
+Used Modell:  AA
+Number of Neurons:  100
+Running Time:  1
+Input rate h: 0.1
+Target Spiking Rate:  1
+Homeostatic Constant:  1000
+Alpha init:  0.05

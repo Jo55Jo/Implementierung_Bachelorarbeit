@@ -78,4 +78,33 @@ def Erdos_Mountain(N: cons.N, k=cons.Fixed):
     return Connection_arr
 
 
-            
+import pickle
+import os
+import numpy as np
+
+def Erdos_Compiled(N, compiled):
+    # Relativer Pfad zur Pickle-Datei
+    relative_path = r'/home/levina/lfz080/Walka/Implementierung_Bachelorarbeit/Models/Compiled_Models_SC/SC_' + str(compiled) + '.pkl'
+    # Absoluter Pfad zur Pickle-Datei relativ zu der aktuellen Datei
+    absolute_path = os.path.join(os.path.dirname(__file__), relative_path)
+
+    # Lade die Pickle-Datei
+    with open(absolute_path, 'rb') as file:
+        Connection_Arr, Somata, Axons = pickle.load(file)
+
+    # Länge der Verbindungen pro Axon
+    len_con = [len(i) for i in Connection_Arr]
+    array_of_lists = []
+
+    for i in range(N):
+        sublist_length = len_con[i]
+
+        # Erstelle eine Liste von Indizes ohne `i`
+        possible_indices = list(range(N))
+        possible_indices.remove(i)  # Entferne `i`
+
+        # Wähle sublist_length Indizes aus possible_indices ohne Wiederholung
+        sublist = np.random.choice(possible_indices, size=sublist_length, replace=False).tolist()
+        array_of_lists.append(sublist)
+
+    return array_of_lists

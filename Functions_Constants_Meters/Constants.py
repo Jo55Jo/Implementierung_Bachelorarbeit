@@ -1,8 +1,6 @@
 import numpy as np
 
 # -------- Model from Paper -----------
-print("bis hier geht1", flush=True)
-asdf
 # Number of Neurons (N)
 N = 10000
 
@@ -10,12 +8,11 @@ N = 10000
 h = 10**(-1)
 
 # Running Time
-Seconds = 10
-Burn_In = 0
+Seconds = 1501
+Burn_In = 500
 
-# model one of: "AA", "ER", "SC", "HM", "ER_Mountain", "ER_Fixed", SC_Compiled
-model = "ER"
-
+# model one of: "AA", "ER", "SC", "HM", "ER_Mountain", "ER_Fixed", SC_Compiled, "Erdos_Compiled"
+model = "Erdos_Compiled"
 # Number of connections for AA
 k = 75
 # Number of Connections for ER
@@ -23,20 +20,19 @@ Fixed = 75
 # probability for ER
 pcon = 0.0075
 # Compiled is the compiled model that is taken 
-compiled = 10
+compiled = 12
 # level für hm
 level = 13
 # Alpha Init: to shorten the burn in phase. In case fo AA with 4 connections, a value arround 0.25 makes sense. For big h it should be lower. For h = 1 it should be 0: Float
 # Sigma Init: Standard deviation for the Alpha initialization: Float
 # Init Activitiy: How many neurons should be active at the start 
-Alpha_init = 0.05
+Alpha_init = 0.01
 SD_init = 0.0
 Init_Activity = 0
 
 # Homeostatic-scaling-constant (tau_hp) = 1 hour = 10**3 is in paper
-tau_hp = 1000
+tau_hp = 1
 
-print("bis hier Geht2")
 # ----------- research ---------------
 
 Homo = False
@@ -44,7 +40,7 @@ Homo = False
 ExternalAddaption = False
 # <<<<<<Subset>>>>>>>
 # Size of the subset 
-Subset = False
+Subset = True
 Subset_size = 500
 
 
