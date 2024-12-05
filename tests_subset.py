@@ -9,7 +9,7 @@ cons.Subset = True
 cons.Fluctuating_h = False
 t1 = time.time()
 # Running the model, please set variables in Constants.py
-Global_act, Branching_global, Autocorrelation, Average_Activity_sub, Average_Activity_rest, Average_Alpha_sub, Average_Alpha_rest, Avalanche_Distribution, Time_Distribution, Avalanche_Distribution_sub, Avalanche_Distribution_rest = Run_Model_Subset.Run_Model_subset(cons.model, cons.N, cons.Seconds, cons.h, cons.compiled)
+Global_act, Branching_global, Autocorrelation, Average_Activity_sub, Average_Activity_rest, Average_Alpha_sub, Average_Alpha_rest, Avalanche_Distribution, Time_Distribution, Avalanche_Distribution_sub, Avalanche_Distribution_rest, branch_sub, branch_rest = Run_Model_Subset.Run_Model_subset(cons.model, cons.N, cons.Seconds, cons.h, cons.compiled)
 t2 = time.time()
 print("Es hat ", int(t2-t1) ," Sekunden gebraucht")
 
@@ -41,7 +41,7 @@ else:
     color = "brown"
 
 # Save some data from the run in the Runtime_Data folder
-rd.save_run_data_subset(Global_act, Branching_global, Autocorrelation, Average_Activity_sub, Average_Activity_rest, Average_Alpha_sub, Average_Alpha_rest, Avalanche_Distribution, Time_Distribution, Avalanche_Distribution_sub, Avalanche_Distribution_rest)
+rd.save_run_data_subset(Global_act, Branching_global, Autocorrelation, Average_Activity_sub, Average_Activity_rest, Average_Alpha_sub, Average_Alpha_rest, Avalanche_Distribution, Time_Distribution, Avalanche_Distribution_sub, Avalanche_Distribution_rest, branch_sub, branch_rest)
 
 # Print some statistics at the end
 print("")

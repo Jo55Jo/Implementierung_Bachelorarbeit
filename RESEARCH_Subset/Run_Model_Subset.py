@@ -37,7 +37,8 @@ def Run_Model_subset(model: str, N: int, Seconds: int, h: float, compiled=10):
     Average_Activity_sub = []
     Average_Activity_rest = []
     Average_Alpha = []
-
+    branch_sub = [] 
+    branch_rest = []
     #Initializing
     state_value_new = np.random.choice(N, size=cons.Init_Activity, replace=False).tolist()
 
@@ -140,18 +141,21 @@ def Run_Model_subset(model: str, N: int, Seconds: int, h: float, compiled=10):
         #Do metering of Branching parameter and autocorrelation
         if i % 100 == 0:
 
-            branch_glob = meters.Branching_Parameters(N, Connection_arr, Alpha)
-            autocorr_t = meters.Autocorrelation_Time(cons.delta_t, branch_glob)
+            branch_glob, branch_sub, branch_rest = meters.Branching_Parameters(N, Connection_arr, Alpha, cons.model, cons.k)
+            #autocorr_t = meters.Autocorrelation_Time(cons.delta_t, branch_glob)
 
             # add meters to collection
             Branching_global.append(branch_glob)
-            Autocorrelation.append(autocorr_t)
+            Average_Activity_sub.append(branch_sub)
+            Average_Activity_rest.append(branch_rest)
+
+            #Autocorrelation.append(autocorr_t)
 
 
-            print("Iteration:", i)
-            print("Global Activity Now: ", glob_t)
-            print("Branching Parameter:", branch_glob)
-            print("Autocorrelation: ", autocorr_t)
+#            print("Iteration:", i)
+#            print("Global Activity Now: ", glob_t)
+#            print("Branching Parameter:", branch_glob)
+#            print("Autocorrelation: ", autocorr_t)
 
 
         # If there is zero activity but the tracker is not 0, then the avalanche is over so return to 0 and
@@ -215,7 +219,7 @@ def Run_Model_subset(model: str, N: int, Seconds: int, h: float, compiled=10):
                     len_con = [len(i) for i in Connection_arr]
                     individual_branch = Alpha*len_con
                     Global_act.append(individual_branch)
-        if (i % 10000 == 0) and (model != "AA"):
+        if (i % 100000 == 0) and (model != "AA") and (i>=cons.Burn_In*1000):
             len_con = [len(i) for i in Connection_arr]
             individual_branch = Alpha*len_con
             Global_act.append(individual_branch)
@@ -227,7 +231,7 @@ def Run_Model_subset(model: str, N: int, Seconds: int, h: float, compiled=10):
         if (i % 100000 == 0):
             print(str(i/1000) + " Seconds of " + str(Seconds))
 
-    return Global_act, Branching_global, Autocorrelation, Average_Activity_sub, Average_Activity_rest, Average_Alpha_sub, Average_Alpha_rest, Avalanche_Distribution, Time_Distribution, Avalanche_Distribution_sub, Avalanche_Distribution_rest
+    return Global_act, Branching_global, Autocorrelation, Average_Activity_sub, Average_Activity_rest, Average_Alpha_sub, Average_Alpha_rest, Avalanche_Distribution, Time_Distribution, Avalanche_Distribution_sub, Avalanche_Distribution_rest, branch_sub, branch_rest
 
 # string -> array of lists
 # Choice is one of ["AA", "ER", "SC", "SC_10000_{i}"] <- "SC_10000_{i}" takes an already compiled Conn_array from a database where i is the specific array. 

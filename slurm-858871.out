@@ -1,0 +1,46 @@
+JobId=858871 JobName=name
+   UserId=lfz080(4890) GroupId=levina(4024) MCS_label=N/A
+   Priority=75115 Nice=0 Account=levina QOS=normal
+   JobState=RUNNING Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:00:01 TimeLimit=3-00:00:00 TimeMin=N/A
+   SubmitTime=2024-11-28T05:54:27 EligibleTime=2024-11-28T05:54:27
+   AccrueTime=2024-11-28T05:54:27
+   StartTime=2024-11-28T05:54:27 EndTime=2024-12-01T05:54:27 Deadline=N/A
+   PreemptEligibleTime=2024-11-28T05:55:27 PreemptTime=None
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2024-11-28T05:54:27 Scheduler=Main
+   Partition=2080-galvani AllocNode:Sid=galvani-slurmctl:1091740
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=galvani-cn104
+   BatchHost=galvani-cn104
+   NumNodes=1 NumCPUs=8 NumTasks=1 CPUs/Task=8 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=8,mem=40G,node=1,billing=2,gres/gpu=1
+   AllocTRES=cpu=8,mem=40G,node=1,billing=2,gres/gpu=1,gres/gpu:rtx2080ti=1
+   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
+   MinCPUsNode=8 MinMemoryNode=40G MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=OK Contiguous=0 Licenses=(null) Network=(null)
+   Command=/mnt/qb/home/levina/lfz080/Walka/Implementierung_Bachelorarbeit/script.sh
+   WorkDir=/mnt/qb/home/levina/lfz080/Walka/Implementierung_Bachelorarbeit
+   StdErr=/mnt/qb/home/levina/lfz080/Walka/Implementierung_Bachelorarbeit/slurm-858871.out
+   StdIn=/dev/null
+   StdOut=/mnt/qb/home/levina/lfz080/Walka/Implementierung_Bachelorarbeit/slurm-858871.out
+   Power=
+   TresPerNode=gres:gpu:1
+   MailUser=walka37@gmail.com MailType=BEGIN,END,FAIL
+   
+
+lalal
+auch das klappt du dumme nuss
+In der Funktion wird es ausgeführt....
+0.0 Seconds of 1
+total used time:  6
+Data saved to Runtime_Data/SC_Compiled10000_10_0.0001_1_75.pkl
+
+Used Modell:  SC_Compiled
+Number of Neurons:  10000
+Running Time:  1
+Input rate h: 0.0001
+Target Spiking Rate:  1
+Homeostatic Constant:  1000
+Alpha init:  0.01

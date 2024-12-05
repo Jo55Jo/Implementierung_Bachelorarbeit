@@ -5,14 +5,14 @@ import numpy as np
 N = 10000
 
 # Extern Input (h) Element of [0, 0.1, 0.01, 0.001, 0.0001]
-h = 10**(-2.5)
+h = 10**(-3) # 3 ist das nächste | dann noch homogenous. SC ändern und subset ändern und vor allem train.sh ändern
 
 # Running Time
-Seconds = 1501
+Seconds = 2501
 Burn_In = 500
 
 # model one of: "AA", "ER", "SC", "HM", "ER_Mountain", "ER_Fixed", SC_Compiled, "Erdos_Compiled"
-model = "SC_Compiled"
+model = "Erdos_Compiled"
 # Number of connections for AA
 k = 75
 # Number of Connections for ER
@@ -20,7 +20,7 @@ Fixed = 75
 # probability for ER
 pcon = 0.0075
 # Compiled is the compiled model that is taken 
-compiled = 12
+compiled = 10
 # level für hm
 level = 13
 # Alpha Init: to shorten the burn in phase. In case fo AA with 4 connections, a value arround 0.25 makes sense. For big h it should be lower. For h = 1 it should be 0: Float
@@ -31,7 +31,7 @@ SD_init = 0.0
 Init_Activity = 0
 
 # Homeostatic-scaling-constant (tau_hp) = 1 hour = 10**3 is in paper
-tau_hp = 1
+tau_hp = 1000
 
 # ----------- research ---------------
 

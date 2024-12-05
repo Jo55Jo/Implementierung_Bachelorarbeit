@@ -1,6 +1,6 @@
 import numpy as np
 #import math
-#from Functions_Constants_Meters import Constants as cons
+from Functions_Constants_Meters import Constants as cons
 
 
 #! Not used anymore because it makes more sense to do it directly during runtime
@@ -38,8 +38,16 @@ def Branching_Parameters(N: int, Connection_arr: np.ndarray, Alpha: np.array, mo
         Connection_lengths = [len(i) for i in Connection_arr]
         Branching_Parameter_ind = Alpha * Connection_lengths
     # calculate the global_branching_parameter
+    if cons.Subset:
+        Branching_Parameter_sub = Branching_Parameter_ind[0:cons.Subset_size].mean()
+        Branching_Parameter_rest = Branching_Parameter_ind[cons.Subset_size:].mean()
     Branching_Parameter_global = Branching_Parameter_ind.mean()
-    return Branching_Parameter_global
+    
+    if cons.Subset:
+        return Branching_Parameter_global, Branching_Parameter_sub, Branching_Parameter_rest
+    else:
+        return Branching_Parameter_global
+
 
 # float (Timeconstant), float (Branching_Parameter_gloabal) --> float (Autocorrelation_time)
 # calculates Autocorrelation time

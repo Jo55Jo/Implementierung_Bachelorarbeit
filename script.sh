@@ -18,5 +18,5 @@ srun \
 singularity exec \
 --nv \
 --bind /mnt/qb/work/levina/lfz080 \
-/home/levina/lfz080/Walka/ffcv.sif \
+/home/levina/lfz080/Walka/ffcv_new.sif \
 ./train.sh
